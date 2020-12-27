@@ -41,5 +41,5 @@ The Curriculum Vitae will store his/her
  ## UML Diagram
  ![UML Diagram](images/DataBase_UML-Class-diagram-UML.jpg)
  
- ## DDBB Diagram
+ ## Relation Diagram
  ![UML Diagram](images/DataBase_UML-Class-diagram-DDBB.jpg)

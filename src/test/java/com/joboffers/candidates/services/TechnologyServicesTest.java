@@ -1,6 +1,8 @@
 package com.joboffers.candidates.services;
 
+import com.joboffers.candidates.builders.CandidateBuilder;
 import com.joboffers.candidates.builders.EducationalInformationBuilder;
+import com.joboffers.candidates.builders.ProfessionalInformationBuilder;
 import com.joboffers.candidates.models.Candidate;
 import com.joboffers.candidates.models.EducationalInformation;
 import com.joboffers.candidates.models.Gender;
@@ -11,107 +13,112 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TechnologyServicesTest {
+class TechnologyServicesTest {
 
     @Test
-    public void calculateExperience_givenACandidate_whenWeNeedHisExperience_thenCalculateItWithEducationalInformation(){
-        Technology technology = new Technology("Java");
+    void calculateExperience_givenAnExistingCandidate_whenCalculateExperienceIsTriggered_thenCalculateItWithEducationalInformation(){
+        Technology technology = new Technology("java");
         List<Technology> uniTechnologies = new ArrayList<>();
         uniTechnologies.add(technology);
         EducationalInformation educationalInformation = new EducationalInformationBuilder()
                 .setName("Univerity")
                 .setDescription("Informatic Engineering")
-                .setStartDate(LocalDate.of(2015,01,01))
-                .setEndDate(LocalDate.of(2019,01,01))
+                .setStartDate(LocalDate.of(2015,1,1))
+                .setEndDate(LocalDate.of(2019,1,1))
                 .setCourse("Java programming")
                 .setPlace("UPC")
                 .setTechnologyList(uniTechnologies)
                 .build();
 
-        List<EducationalInformation> educationalInformations = new ArrayList<>();
-        educationalInformations.add(educationalInformation);
-        Candidate candidate = new Candidate(
-                "Patricia",
-                LocalDate.of(1990,10,10),
-                Gender.WOMAN,
-                "patricia@candidate.com",
-                "Valencia 124",
-                "linkedin.com/patricia",
-                "6223344",
-                educationalInformations,
-                null
-        );
+        List<EducationalInformation> educationalInformationList = new ArrayList<>();
+        educationalInformationList.add(educationalInformation);
+        Candidate candidate = CandidateBuilder.aCandidate() // TODO otra forma de hacer el builder, cual es mejor?
+                .setName("Patricia")
+                .setBirthday(LocalDate.of(1990,10,10))
+                .setGender(Gender.WOMAN)
+                .setEmail("patricia@candidate.com")
+                .setAddress("Valencia 124")
+                .setLinkedin("linkedin.com/patricia")
+                .setPhoneNumber("6223344")
+                .setEducationalInformationList(educationalInformationList)
+                .setProfessionalInformationList(Collections.emptyList())
+                .build();
 
-        int monthsOfExperience = Technology.calculateExperience(candidate);
-        assertEquals(0, monthsOfExperience);
+        Map<String, Integer> monthsOfExperience = Technology.calculateExperience(candidate);
+        assertEquals(48, monthsOfExperience.get("java"));
     }
 
     @Test
-    public void calculateExperience_givenACandidate_whenWeNeedHisExperience_thenCalculateItWithProfessionalInformation(){
+    void calculateExperience_givenAnExistingCandidate_whenCalculateExperienceIsTriggered_thenCalculateItWithProfessionalInformation(){
         Technology technology = new Technology("Java");
         List<Technology> jobTechnologies = new ArrayList<>();
         jobTechnologies.add(technology);
-        ProfessionalInformation professionalInformation = new ProfessionalInformation(
-                "First company job",
-                "Informatic Engineering at a consultant company",
-                LocalDate.of(2010,01,01),
-                LocalDate.of(2020,01,01),
-                "Working as a Java programmer for 10 years",
-                jobTechnologies
-        );
+        ProfessionalInformation professionalInformation = ProfessionalInformationBuilder.aProfessionalInformation()
+                .setName("First company job")
+                .setDescription("Informatic Engineering at a consultant company")
+                .setStartDate(LocalDate.of(2010, 1,1))
+                .setEndDate(LocalDate.of(2020,1,1))
+                .setNotes("Working as a Java programmer for 10 years")
+                .setTechnologyList(jobTechnologies)
+                .build();
 
-        List<ProfessionalInformation> professionalInformations = new ArrayList<>();
-        professionalInformations.add(professionalInformation);
+        List<ProfessionalInformation> professionalInformationList = new ArrayList<>();
+        professionalInformationList.add(professionalInformation);
+        Candidate candidate = CandidateBuilder.aCandidate()
+                .setName("Jose")
+                .setBirthday(LocalDate.of(1990,10,10))
+                .setGender(Gender.MAN)
+                .setEmail("patricia@candidate.com")
+                .setAddress("Valencia 124")
+                .setLinkedin("linkedin.com/patricia")
+                .setPhoneNumber("6223344")
+                .setEducationalInformationList(Collections.emptyList())
+                .setProfessionalInformationList(professionalInformationList)
+                .build();
 
-        Candidate candidate = new Candidate(
-                "Jose",
-                LocalDate.of(1990,10,10),
-                Gender.MAN,
-                "patricia@candidate.com",
-                "Valencia 124",
-                "linkedin.com/patricia",
-                "6223344",
-                null,
-                professionalInformations
-        );
-
-        int monthsOfExperience = Technology.calculateExperience(candidate);
-        assertEquals(0, monthsOfExperience);
+        Map<String, Integer> monthsOfExperience = Technology.calculateExperience(candidate);
+        assertEquals(120, monthsOfExperience.get("java"));
     }
 
+    // TODO añadir test con los dos casos combinados de educational y professional
+
     @Test
-    public void findCandidatesWithTechnologyExperience_givenACandidate_whenWeNeedHisExperience_thenCalculateItWithProfessionalInformation(){
-        Technology technology = new Technology("Java");
+    void findCandidatesWithTechnologyExperience_givenAnExistingCandidate_whenFindCandidatesWithTechnologyExperienceIsTriggered_thenCalculateItWithProfessionalInformation(){
+        Technology technology = new Technology("java");
         List<Technology> jobTechnologies = new ArrayList<>();
         jobTechnologies.add(technology);
-        ProfessionalInformation professionalInformation = new ProfessionalInformation(
-                "First company job",
-                "Informatic Engineering at a consultant company",
-                LocalDate.of(2010,01,01),
-                LocalDate.of(2020,01,01),
-                "Working as a Java programmer for 10 years",
-                jobTechnologies
-        );
 
-        List<ProfessionalInformation> professionalInformations = new ArrayList<>();
-        professionalInformations.add(professionalInformation);
-        Candidate candidate = new Candidate(
-                "Jose",
-                LocalDate.of(1990,10,10),
-                Gender.MAN,
-                "patricia@candidate.com",
-                "Valencia 124",
-                "linkedin.com/patricia",
-                "6223344",
-                null,
-                professionalInformations
-        );
+        ProfessionalInformation professionalInformation = ProfessionalInformationBuilder.aProfessionalInformation()
+                .setName("First company job")
+                .setDescription("Informatic Engineering at a consultant company")
+                .setStartDate(LocalDate.of(2010,1,1))
+                .setEndDate(LocalDate.of(2020,1,1))
+                .setNotes("Working as a Java programmer for 10 years")
+                .setTechnologyList(jobTechnologies)
+                .build();
 
-        List<Candidate> candidates = Technology.findCandidatesWithTechnologyExperience("Java");
+        List<ProfessionalInformation> professionalInformationList = new ArrayList<>();
+        professionalInformationList.add(professionalInformation);
+        Candidate candidate = CandidateBuilder.aCandidate()
+                .setName("Jose")
+                .setBirthday(LocalDate.of(1990,10,10))
+                .setGender(Gender.MAN)
+                .setEmail("jose@candidate.com")
+                .setAddress("Valencia 124")
+                .setLinkedin("linkedin.com/jose")
+                .setPhoneNumber("6223344")
+                .setEducationalInformationList(Collections.emptyList())
+                .setProfessionalInformationList(professionalInformationList)
+                .build();
+
+
+        List<Candidate> candidates = Technology.findCandidatesWithTechnologyExperience("java");
         assertEquals(0, candidates.size());
     }
 }

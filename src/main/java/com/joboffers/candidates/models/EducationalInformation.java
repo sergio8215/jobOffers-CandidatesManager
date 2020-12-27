@@ -10,7 +10,7 @@ public class EducationalInformation {
     private LocalDate endDate;
     private String course;
     private String place;
-    private List<Technology> technologies;
+    private List<Technology> technologyList;
 
     public void setName(String name) {
         this.name = name;
@@ -36,18 +36,18 @@ public class EducationalInformation {
         this.place = place;
     }
 
-    public void setTechnologies(List<Technology> technologies) {
-        this.technologies = technologies;
+    public void setTechnologyList(List<Technology> technologyList) {
+        this.technologyList = technologyList;
     }
 
-    public EducationalInformation(String name, String description, LocalDate startDate, LocalDate endDate, String course, String place, List<Technology> technologies) {
+    public EducationalInformation(String name, String description, LocalDate startDate, LocalDate endDate, String course, String place, List<Technology> technologyList) {
         this.name = name;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
         this.course = course;
         this.place = place;
-        this.technologies = technologies;
+        this.technologyList = technologyList;
     }
 
     public String getName() {
@@ -74,7 +74,7 @@ public class EducationalInformation {
         return place;
     }
 
-    public List<Technology> getTechnologies() {
-        return technologies;
+    public List<Technology> getTechnologyList() {
+        return technologyList;
     }
 }

@@ -1,27 +1,57 @@
 package com.joboffers.candidates.builders;
 
+import com.joboffers.candidates.models.ProfessionalInformation;
 import com.joboffers.candidates.models.Technology;
 
 import java.time.LocalDate;
 import java.util.List;
 
+public final class ProfessionalInformationBuilder {
+    private String name;
+    private String description;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private String notes;
+    private List<Technology> technologyList;
 
-public class ProfessionalInformationBuilder {
-
-    private final String name;
-    private final String description;
-    private final LocalDate startDate;
-    private final LocalDate endDate;
-    private final String notes;
-    private final List<Technology> technologyList;
-
-    public ProfessionalInformationBuilder(String name, String description, LocalDate startDate, LocalDate endDate, String notes, List<Technology> technologyList) {
-        this.name = name;
-        this.description = description;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.notes = notes;
-        this.technologyList = technologyList;
+    private ProfessionalInformationBuilder() {
     }
 
+    public static ProfessionalInformationBuilder aProfessionalInformation() {
+        return new ProfessionalInformationBuilder();
+    }
+
+    public ProfessionalInformationBuilder setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public ProfessionalInformationBuilder setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public ProfessionalInformationBuilder setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+        return this;
+    }
+
+    public ProfessionalInformationBuilder setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+        return this;
+    }
+
+    public ProfessionalInformationBuilder setNotes(String notes) {
+        this.notes = notes;
+        return this;
+    }
+
+    public ProfessionalInformationBuilder setTechnologyList(List<Technology> technologyList) {
+        this.technologyList = technologyList;
+        return this;
+    }
+
+    public ProfessionalInformation build() {
+        return new ProfessionalInformation(name, description, startDate, endDate, notes, technologyList);
+    }
 }
