@@ -1,4 +1,4 @@
-package com.joboffers.candidates.models;
+package com.joboffers.candidates.domain.models;
 
 public enum Gender {
     ;

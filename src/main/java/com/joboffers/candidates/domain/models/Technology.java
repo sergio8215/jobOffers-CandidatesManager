@@ -1,4 +1,4 @@
-package com.joboffers.candidates.models;
+package com.joboffers.candidates.domain.models;
 
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
@@ -26,15 +26,11 @@ public class Technology {
             List<Technology> educationalTechnologyList =  educationalInformation.getTechnologyList();
 
             educationalTechnologyList.forEach(tech -> {
-                Integer pastMonthExperience = technologyMap.get(tech.getTechnology().toLowerCase());
+                Integer pastMonthExperience = technologyMap.getOrDefault(tech.getTechnology().toLowerCase(), 0);
                 Integer newMonthExperience = Math.toIntExact(ChronoUnit.MONTHS.between(
                         educationalInformation.getStartDate(),
                         educationalInformation.getEndDate()
                 ));
-
-                if (pastMonthExperience == null) {
-                    pastMonthExperience = 0;
-                }
 
                 technologyMap.put(tech.getTechnology().toLowerCase(), pastMonthExperience + newMonthExperience);
             });
@@ -44,20 +40,15 @@ public class Technology {
             List<Technology> professionalTechnologyList =  professionalInformation.getTechnologyList();
 
             professionalTechnologyList.forEach(tech -> {
-                Integer pastMonthExperience = technologyMap.get(tech.getTechnology().toLowerCase());
+                Integer pastMonthExperience = technologyMap.getOrDefault(tech.getTechnology().toLowerCase(), 0);
                 Integer newMonthExperience = Math.toIntExact(ChronoUnit.MONTHS.between(
                         professionalInformation.getStartDate(),
                         professionalInformation.getEndDate()
                 ));
 
-                if (pastMonthExperience == null) {
-                    pastMonthExperience = 0;
-                }
-
                 technologyMap.put(tech.getTechnology().toLowerCase(), pastMonthExperience + newMonthExperience);
             });
         });
-
 
         return technologyMap;
     }

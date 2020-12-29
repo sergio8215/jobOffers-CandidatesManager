@@ -1,4 +1,4 @@
-package com.joboffers.candidates.models;
+package com.joboffers.candidates.domain.models;
 
 import java.time.LocalDate;
 import java.util.List;

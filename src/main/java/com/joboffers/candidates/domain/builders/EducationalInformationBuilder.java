@@ -1,7 +1,7 @@
-package com.joboffers.candidates.builders;
+package com.joboffers.candidates.domain.builders;
 
-import com.joboffers.candidates.models.EducationalInformation;
-import com.joboffers.candidates.models.Technology;
+import com.joboffers.candidates.domain.models.EducationalInformation;
+import com.joboffers.candidates.domain.models.Technology;
 
 import java.time.LocalDate;
 import java.util.List;
