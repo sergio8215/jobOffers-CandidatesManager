@@ -9,6 +9,9 @@ import com.joboffers.candidates.domain.models.Gender;
 import com.joboffers.candidates.domain.models.ProfessionalInformation;
 import com.joboffers.candidates.domain.models.Technology;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,8 +22,11 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@ExtendWith(MockitoExtension.class)
 class TechnologyServicesImplTest {
 
+    @InjectMocks
+    private TechnologyServicesImpl underTest;
 
     @Test
     void calculateExperience_givenAnExistingCandidateWithNoPastExperience_whenCalculateExperienceIsTriggered_thenCalculateItWithEducationalInformation(){
@@ -51,7 +57,7 @@ class TechnologyServicesImplTest {
                 .setProfessionalInformationList(Collections.emptyList())
                 .build();
 
-        Map<String, Integer> monthsOfExperience = Technology.calculateExperience(candidate);
+        Map<String, Integer> monthsOfExperience = underTest.calculateExperience(candidate);
         assertEquals(48, monthsOfExperience.get("java"));
     }
 
@@ -95,7 +101,7 @@ class TechnologyServicesImplTest {
                 .setProfessionalInformationList(Collections.emptyList())
                 .build();
 
-        Map<String, Integer> monthsOfExperience = Technology.calculateExperience(candidate);
+        Map<String, Integer> monthsOfExperience = underTest.calculateExperience(candidate);
         assertEquals(60, monthsOfExperience.get("java"));
     }
 
@@ -139,7 +145,7 @@ class TechnologyServicesImplTest {
                 .setProfessionalInformationList(professionalInformationList)
                 .build();
 
-        Map<String, Integer> monthsOfExperience = Technology.calculateExperience(candidate);
+        Map<String, Integer> monthsOfExperience = underTest.calculateExperience(candidate);
         assertEquals(168, monthsOfExperience.get("java"));
     }
 
@@ -171,7 +177,7 @@ class TechnologyServicesImplTest {
                 .setProfessionalInformationList(professionalInformationList)
                 .build();
 
-        Map<String, Integer> monthsOfExperience = Technology.calculateExperience(candidate);
+        Map<String, Integer> monthsOfExperience = underTest.calculateExperience(candidate);
         assertEquals(120, monthsOfExperience.get("java"));
     }
 
@@ -214,7 +220,7 @@ class TechnologyServicesImplTest {
                 .setProfessionalInformationList(professionalInformationList)
                 .build();
 
-        Map<String, Integer> monthsOfExperience = Technology.calculateExperience(candidate);
+        Map<String, Integer> monthsOfExperience = underTest.calculateExperience(candidate);
         assertEquals(132, monthsOfExperience.get("java"));
     }
 
@@ -248,7 +254,7 @@ class TechnologyServicesImplTest {
                 .build();
 
 
-        List<Candidate> candidates = Technology.findCandidatesWithTechnologyExperience("java");
+        List<Candidate> candidates = underTest.findCandidatesWithTechnologyExperience("java");
         assertEquals(0, candidates.size());
     }
 }

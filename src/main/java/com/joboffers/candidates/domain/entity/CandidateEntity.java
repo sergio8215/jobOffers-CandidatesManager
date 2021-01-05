@@ -27,24 +27,34 @@ public class CandidateEntity {
     )
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
+
     @Column(name = "name", nullable = false)
     private String name;
+
     @Column(name = "birthday", nullable = false)
     private LocalDate birthday;
+
     @Column(name = "gender", nullable = false)
     private String gender;
+
     @Column(name = "email", nullable = false)
     private String email;
+
     @Column(name = "address")
     private String address;
+
     @Column(name = "linkedin")
     private String linkedin;
+
     @Column(name = "phoneNumber")
     private String phoneNumber;
+
     @OneToMany(cascade = ALL, mappedBy = "candidates")
     private List<EducationalInformation> educationalInformationList;
+
     @OneToMany(cascade = ALL, mappedBy = "candidates")
     private List<ProfessionalInformation> professionalInformationList;
+
 
     public UUID getId() {
         return id;
