@@ -1,8 +1,8 @@
-package com.joboffers.candidates.domain.builders;
+package com.joboffers.candidates.service.model.builder;
 
-import com.joboffers.candidates.domain.models.Candidate;
-import com.joboffers.candidates.domain.models.EducationalInformation;
-import com.joboffers.candidates.domain.models.ProfessionalInformation;
+import com.joboffers.candidates.service.model.Candidate;
+import com.joboffers.candidates.service.model.EducationalInformation;
+import com.joboffers.candidates.service.model.ProfessionalInformation;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -25,47 +25,47 @@ public final class CandidateBuilder {
         return new CandidateBuilder();
     }
 
-    public CandidateBuilder setName(String name) {
+    public CandidateBuilder withName(String name) {
         this.name = name;
         return this;
     }
 
-    public CandidateBuilder setBirthday(LocalDate birthday) {
+    public CandidateBuilder withBirthday(LocalDate birthday) {
         this.birthday = birthday;
         return this;
     }
 
-    public CandidateBuilder setGender(String gender) {
+    public CandidateBuilder withGender(String gender) {
         this.gender = gender;
         return this;
     }
 
-    public CandidateBuilder setEmail(String email) {
+    public CandidateBuilder withEmail(String email) {
         this.email = email;
         return this;
     }
 
-    public CandidateBuilder setAddress(String address) {
+    public CandidateBuilder withAddress(String address) {
         this.address = address;
         return this;
     }
 
-    public CandidateBuilder setLinkedin(String linkedin) {
+    public CandidateBuilder withLinkedin(String linkedin) {
         this.linkedin = linkedin;
         return this;
     }
 
-    public CandidateBuilder setPhoneNumber(String phoneNumber) {
+    public CandidateBuilder withPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }
 
-    public CandidateBuilder setEducationalInformationList(List<EducationalInformation> educationalInformationList) {
+    public CandidateBuilder withEducationalInformationList(List<EducationalInformation> educationalInformationList) {
         this.educationalInformationList = educationalInformationList;
         return this;
     }
 
-    public CandidateBuilder setProfessionalInformationList(List<ProfessionalInformation> professionalInformationList) {
+    public CandidateBuilder withProfessionalInformationList(List<ProfessionalInformation> professionalInformationList) {
         this.professionalInformationList = professionalInformationList;
         return this;
     }

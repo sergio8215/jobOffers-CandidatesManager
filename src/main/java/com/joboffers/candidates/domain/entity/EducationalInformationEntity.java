@@ -1,7 +1,7 @@
 package com.joboffers.candidates.domain.entity;
 
-import com.joboffers.candidates.domain.models.Candidate;
-import com.joboffers.candidates.domain.models.Technology;
+import com.joboffers.candidates.service.model.Candidate;
+import com.joboffers.candidates.service.model.Technology;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;

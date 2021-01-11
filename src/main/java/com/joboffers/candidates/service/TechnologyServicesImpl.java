@@ -1,9 +1,9 @@
-package com.joboffers.candidates.services;
+package com.joboffers.candidates.service;
 
-import com.joboffers.candidates.domain.models.Candidate;
-import com.joboffers.candidates.domain.models.EducationalInformation;
-import com.joboffers.candidates.domain.models.ProfessionalInformation;
-import com.joboffers.candidates.domain.models.Technology;
+import com.joboffers.candidates.service.model.Candidate;
+import com.joboffers.candidates.service.model.EducationalInformation;
+import com.joboffers.candidates.service.model.ProfessionalInformation;
+import com.joboffers.candidates.service.model.Technology;
 
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
@@ -18,7 +18,7 @@ public class TechnologyServicesImpl {
         List<ProfessionalInformation> professionalInformationList  = candidate.getProfessionalInformationList(); // TODO hay que validar que no sea null si no da error.
         Map<String, Integer> technologyMap = new HashMap();
 
-        educationalInformationList.forEach(educationalInformation -> {
+        educationalInformationList.forEach(educationalInformation -> { // TODO private method que recibe una lista
             List<Technology> educationalTechnologyList =  educationalInformation.getTechnologyList();
 
             educationalTechnologyList.forEach(tech -> {

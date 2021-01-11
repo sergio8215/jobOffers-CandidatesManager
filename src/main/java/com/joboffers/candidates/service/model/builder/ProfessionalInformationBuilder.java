@@ -1,7 +1,7 @@
-package com.joboffers.candidates.domain.builders;
+package com.joboffers.candidates.service.model.builder;
 
-import com.joboffers.candidates.domain.models.ProfessionalInformation;
-import com.joboffers.candidates.domain.models.Technology;
+import com.joboffers.candidates.service.model.ProfessionalInformation;
+import com.joboffers.candidates.service.model.Technology;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,32 +21,32 @@ public final class ProfessionalInformationBuilder {
         return new ProfessionalInformationBuilder();
     }
 
-    public ProfessionalInformationBuilder setName(String name) {
+    public ProfessionalInformationBuilder withName(String name) {
         this.name = name;
         return this;
     }
 
-    public ProfessionalInformationBuilder setDescription(String description) {
+    public ProfessionalInformationBuilder withDescription(String description) {
         this.description = description;
         return this;
     }
 
-    public ProfessionalInformationBuilder setStartDate(LocalDate startDate) {
+    public ProfessionalInformationBuilder withStartDate(LocalDate startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    public ProfessionalInformationBuilder setEndDate(LocalDate endDate) {
+    public ProfessionalInformationBuilder withEndDate(LocalDate endDate) {
         this.endDate = endDate;
         return this;
     }
 
-    public ProfessionalInformationBuilder setNotes(String notes) {
+    public ProfessionalInformationBuilder withNotes(String notes) {
         this.notes = notes;
         return this;
     }
 
-    public ProfessionalInformationBuilder setTechnologyList(List<Technology> technologyList) {
+    public ProfessionalInformationBuilder withTechnologyList(List<Technology> technologyList) {
         this.technologyList = technologyList;
         return this;
     }

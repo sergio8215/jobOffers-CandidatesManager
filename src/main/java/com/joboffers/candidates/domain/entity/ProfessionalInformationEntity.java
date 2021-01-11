@@ -1,7 +1,7 @@
 package com.joboffers.candidates.domain.entity;
 
-import com.joboffers.candidates.domain.models.Candidate;
-import com.joboffers.candidates.domain.models.Technology;
+import com.joboffers.candidates.service.model.Candidate;
+import com.joboffers.candidates.service.model.Technology;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
@@ -10,13 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity

@@ -1,20 +1,18 @@
 package com.joboffers.candidates.domain.entity;
 
-import com.joboffers.candidates.domain.models.Candidate;
-import com.joboffers.candidates.domain.models.EducationalInformation;
-import com.joboffers.candidates.domain.models.ProfessionalInformation;
+import com.joboffers.candidates.service.model.Candidate;
+import com.joboffers.candidates.service.model.EducationalInformation;
+import com.joboffers.candidates.service.model.ProfessionalInformation;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.UUID;
-
-import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Table(name = "Technologies")
@@ -32,14 +30,14 @@ public class TechnologyEntity {
     @Column(name = "technology", nullable = false)
     private String technology;
 
-    @ManyToOne(optional = false, fetch = LAZY)
-    @JoinColumn(name = "id", nullable = false, updatable = false)
+    @ManyToMany
+    @JoinTable(name = "technologies_candidates")
     private EducationalInformation educationalInformation;
 
-    @ManyToOne(optional = false, fetch = LAZY)
+    /*@ManyToMany(optional = false, fetch = LAZY)
     @JoinColumn(name = "id", nullable = false, updatable = false)
     private ProfessionalInformation professionalInformation;
-
+*/
     public UUID getId() {
         return id;
     }
@@ -63,12 +61,12 @@ public class TechnologyEntity {
     public void setEducationalInformation(EducationalInformation educationalInformation) {
         this.educationalInformation = educationalInformation;
     }
-
+/*
     public ProfessionalInformation getProfessionalInformation() {
         return professionalInformation;
     }
 
     public void setProfessionalInformation(ProfessionalInformation professionalInformation) {
         this.professionalInformation = professionalInformation;
-    }
+    }*/
 }

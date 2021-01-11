@@ -1,24 +1,24 @@
-package com.joboffers.candidates.domain.models;
+package com.joboffers.candidates.service.model;
 
 import java.time.LocalDate;
 import java.util.List;
 
-
-public class ProfessionalInformation {
-
+public class EducationalInformation {
     private final String name;
     private final String description;
     private final LocalDate startDate;
     private final LocalDate endDate;
-    private final String notes;
+    private final String course;
+    private final String place;
     private final List<Technology> technologyList;
 
-    public ProfessionalInformation( String name,  String description,  LocalDate startDate,  LocalDate endDate,  String notes,  List<Technology> technologyList) {
+    public EducationalInformation(String name, String description, LocalDate startDate, LocalDate endDate, String course, String place, List<Technology> technologyList) {
         this.name = name;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.notes = notes;
+        this.course = course;
+        this.place = place;
         this.technologyList = technologyList;
     }
 
@@ -38,8 +38,12 @@ public class ProfessionalInformation {
         return endDate;
     }
 
-    public String getNotes() {
-        return notes;
+    public String getCourse() {
+        return course;
+    }
+
+    public String getPlace() {
+        return place;
     }
 
     public List<Technology> getTechnologyList() {

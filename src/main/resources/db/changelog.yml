@@ -1,0 +1,13 @@
+databaseChangelog:
+  # executable changes
+  - changeSet:
+      id: initial-schema
+      author: sergio
+      changes:
+        - sqlFiles:
+            path: upgrade/jobOffers_schema.sql
+            relativeToChangeLogFile: true
+            splitStatements: false
+  - include:
+      file: upgrade/predeployment/changelog.yml
+      realtiveToChangelogFile: true
