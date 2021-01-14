@@ -32,11 +32,11 @@ public class TechnologyEntity {
 
     @ManyToMany
     @JoinTable(name = "technologies_candidates")
-    private EducationalInformation educationalInformation;
+    private EducationalInformationEntity educationalInformation;
 
     /*@ManyToMany(optional = false, fetch = LAZY)
     @JoinColumn(name = "id", nullable = false, updatable = false)
-    private ProfessionalInformation professionalInformation;
+    private ProfessionalInformationEntity professionalInformation;
 */
     public UUID getId() {
         return id;
@@ -54,19 +54,19 @@ public class TechnologyEntity {
         this.technology = technology;
     }
 
-    public EducationalInformation getEducationalInformation() {
+    public EducationalInformationEntity getEducationalInformation() {
         return educationalInformation;
     }
 
-    public void setEducationalInformation(EducationalInformation educationalInformation) {
+    public void setEducationalInformation(EducationalInformationEntity educationalInformation) {
         this.educationalInformation = educationalInformation;
     }
 /*
-    public ProfessionalInformation getProfessionalInformation() {
+    public ProfessionalInformationEntity getProfessionalInformation() {
         return professionalInformation;
     }
 
-    public void setProfessionalInformation(ProfessionalInformation professionalInformation) {
+    public void setProfessionalInformation(ProfessionalInformationEntity professionalInformation) {
         this.professionalInformation = professionalInformation;
     }*/
 }

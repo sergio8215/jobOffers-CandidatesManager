@@ -50,10 +50,10 @@ public class CandidateEntity {
     private String phoneNumber;
 
     @OneToMany(cascade = ALL, mappedBy = "candidates")
-    private List<EducationalInformation> educationalInformationList;
+    private List<EducationalInformationEntity> educationalInformationList;
 
     @OneToMany(cascade = ALL, mappedBy = "candidates")
-    private List<ProfessionalInformation> professionalInformationList;
+    private List<ProfessionalInformationEntity> professionalInformationList;
 
 
     public UUID getId() {
@@ -88,11 +88,11 @@ public class CandidateEntity {
         return phoneNumber;
     }
 
-    public List<EducationalInformation> getEducationalInformationList() {
+    public List<EducationalInformationEntity> getEducationalInformationList() {
         return educationalInformationList;
     }
 
-    public List<ProfessionalInformation> getProfessionalInformationList() {
+    public List<ProfessionalInformationEntity> getProfessionalInformationList() {
         return professionalInformationList;
     }
 
@@ -128,11 +128,11 @@ public class CandidateEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setEducationalInformationList(List<EducationalInformation> educationalInformationList) {
+    public void setEducationalInformationList(List<EducationalInformationEntity> educationalInformationList) {
         this.educationalInformationList = educationalInformationList;
     }
 
-    public void setProfessionalInformationList(List<ProfessionalInformation> professionalInformationList) {
+    public void setProfessionalInformationList(List<ProfessionalInformationEntity> professionalInformationList) {
         this.professionalInformationList = professionalInformationList;
     }
 }

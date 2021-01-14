@@ -46,11 +46,11 @@ public class ProfessionalInformationEntity {
     private String notes;
 
     @Column(name = "technologyList", nullable = false)
-    private List<Technology> technologyList;
+    private List<TechnologyEntity> technologyList;
 
     @ManyToOne(optional = false, fetch = LAZY)
     @JoinColumn(name = "id", nullable = false, updatable = false)
-    private Candidate candidate;
+    private CandidateEntity candidate;
 
     public UUID getId() {
         return id;
@@ -100,19 +100,19 @@ public class ProfessionalInformationEntity {
         this.notes = notes;
     }
 
-    public List<Technology> getTechnologyList() {
+    public List<TechnologyEntity> getTechnologyList() {
         return technologyList;
     }
 
-    public void setTechnologyList(List<Technology> technologyList) {
+    public void setTechnologyList(List<TechnologyEntity> technologyList) {
         this.technologyList = technologyList;
     }
 
-    public Candidate getCandidate() {
+    public CandidateEntity getCandidate() {
         return candidate;
     }
 
-    public void setCandidate(Candidate candidate) {
+    public void setCandidate(CandidateEntity candidate) {
         this.candidate = candidate;
     }
 }

@@ -51,11 +51,11 @@ public class EducationalInformationEntity {
     private String place;
 
     @OneToMany(cascade = ALL, mappedBy = "EducationalInformations")
-    private List<Technology> technologyList;
+    private List<TechnologyEntity> technologyList;
 
     @ManyToOne(optional = false, fetch = LAZY)
     @JoinColumn(name = "id", nullable = false, updatable = false)
-    private Candidate candidate;
+    private CandidateEntity candidate;
 
     public UUID getId() {
         return id;
@@ -113,11 +113,11 @@ public class EducationalInformationEntity {
         this.place = place;
     }
 
-    public List<Technology> getTechnologyList() {
+    public List<TechnologyEntity> getTechnologyList() {
         return technologyList;
     }
 
-    public void setTechnologyList(List<Technology> technologyList) {
+    public void setTechnologyList(List<TechnologyEntity> technologyList) {
         this.technologyList = technologyList;
     }
 }
