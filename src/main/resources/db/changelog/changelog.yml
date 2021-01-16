@@ -1,0 +1,10 @@
+databaseChangelog:
+  # executable changes
+  - changeSet:
+      id: 1
+      author: sergio
+      changes:
+        - sqlFiles:
+            path: changes/jobOffers_schema.sql
+            relativeToChangeLogFile: true
+            splitStatements: false
