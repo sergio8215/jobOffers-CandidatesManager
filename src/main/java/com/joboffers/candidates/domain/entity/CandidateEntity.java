@@ -1,7 +1,5 @@
 package com.joboffers.candidates.domain.entity;
 
-import com.joboffers.candidates.service.model.EducationalInformation;
-import com.joboffers.candidates.service.model.ProfessionalInformation;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
@@ -43,8 +41,8 @@ public class CandidateEntity {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "linkedin")
-    private String linkedin;
+    @Column(name = "linkedIn")
+    private String linkedIn;
 
     @Column(name = "phoneNumber")
     private String phoneNumber;
@@ -80,8 +78,8 @@ public class CandidateEntity {
         return address;
     }
 
-    public String getLinkedin() {
-        return linkedin;
+    public String getLinkedIn() {
+        return linkedIn;
     }
 
     public String getPhoneNumber() {
@@ -96,43 +94,43 @@ public class CandidateEntity {
         return professionalInformationList;
     }
 
-    public void setId(UUID id) {
+    public void setId(final UUID id) {
         this.id = id;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(final LocalDate birthday) {
         this.birthday = birthday;
     }
 
-    public void setGender(String gender) {
+    public void setGender(final String gender) {
         this.gender = gender;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(final String email) {
         this.email = email;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(final String address) {
         this.address = address;
     }
 
-    public void setLinkedin(String linkedin) {
-        this.linkedin = linkedin;
+    public void setLinkedIn(final String linkedIn) {
+        this.linkedIn = linkedIn;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(final String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setEducationalInformationList(List<EducationalInformationEntity> educationalInformationList) {
+    public void setEducationalInformationList(final List<EducationalInformationEntity> educationalInformationList) {
         this.educationalInformationList = educationalInformationList;
     }
 
-    public void setProfessionalInformationList(List<ProfessionalInformationEntity> professionalInformationList) {
+    public void setProfessionalInformationList(final List<ProfessionalInformationEntity> professionalInformationList) {
         this.professionalInformationList = professionalInformationList;
     }
 }

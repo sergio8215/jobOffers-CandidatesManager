@@ -57,7 +57,7 @@ public final class TestObjectFactory {
         candidateEntity.setGender(Gender.WOMAN);
         candidateEntity.setEmail("patricia@candidate.com");
         candidateEntity.setAddress("Valencia 124");
-        candidateEntity.setLinkedin("linkedin.com/patricia");
+        candidateEntity.setLinkedIn("linkedin.com/patricia");
         candidateEntity.setPhoneNumber("6223344");
         candidateEntity.setEducationalInformationList(ei);
         candidateEntity.setProfessionalInformationList(pi);

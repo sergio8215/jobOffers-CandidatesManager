@@ -1,4 +1,4 @@
-databaseChangelog:
+databaseChangeLog:
   # executable changes
   - changeSet:
       id: 1

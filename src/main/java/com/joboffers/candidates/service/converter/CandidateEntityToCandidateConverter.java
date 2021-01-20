@@ -24,7 +24,7 @@ public class CandidateEntityToCandidateConverter implements Converter<CandidateE
                 .withBirthday(candidateEntity.getBirthday())
                 .withEmail(candidateEntity.getEmail())
                 .withGender(candidateEntity.getGender())
-                .withLinkedin(candidateEntity.getLinkedin())
+                .withLinkedin(candidateEntity.getLinkedIn())
                 .withPhoneNumber(candidateEntity.getPhoneNumber())
                 .withProfessionalInformationList(candidateEntity.getProfessionalInformationList().stream()
                         .map(professionalInformationEntity -> conversionService.convert(professionalInformationEntity, ProfessionalInformation.class))
