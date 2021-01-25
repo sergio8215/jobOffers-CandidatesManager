@@ -41,7 +41,7 @@ class CandidateServiceImpl implements CandidateService {
         if (isNull(id)) {
             throw new IllegalArgumentException("Candidate id can't be null");
         }
-//        final Person person = Person.builder()
+        
         return candidateRepository.findById(id).map(candidateEntity -> conversionService.convert(candidateEntity, Candidate.class));
     }
 

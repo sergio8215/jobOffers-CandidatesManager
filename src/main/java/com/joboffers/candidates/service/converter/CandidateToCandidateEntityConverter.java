@@ -15,23 +15,22 @@ public class CandidateToCandidateEntityConverter implements Converter<Candidate,
 
     @Override
     public CandidateEntity convert(final Candidate candidate) {
-        final CandidateEntity candidateEntity = new CandidateEntity();
-        candidateEntity.setName(candidate.getName());
-        candidateEntity.setAddress(candidate.getAddress());
-        candidateEntity.setBirthday(candidate.getBirthday());
-        candidateEntity.setEmail(candidate.getEmail());
-        candidateEntity.setGender(candidate.getGender());
-        candidateEntity.setLinkedIn(candidate.getLinkedin());
-        candidateEntity.setPhoneNumber(candidate.getPhoneNumber());
-        candidateEntity.setEducationalInformationList(candidate.getEducationalInformationList().stream()
-                .map(educationalInformation ->
-                        conversionService.convert(educationalInformation, EducationalInformationEntity.class))
-                .collect(Collectors.toList()));
-        candidateEntity.setProfessionalInformationList(candidate.getProfessionalInformationList().stream()
-                .map(professionalInformation ->
-                        conversionService.convert(professionalInformation, ProfessionalInformationEntity.class))
-                .collect(Collectors.toList()));
-
-        return candidateEntity;
+        return CandidateEntity.builder()
+                .name(candidate.getName())
+                .address(candidate.getAddress())
+                .birthday(candidate.getBirthday())
+                .email(candidate.getEmail())
+                .gender(candidate.getGender())
+                .linkedIn(candidate.getLinkedin())
+                .phoneNumber(candidate.getPhoneNumber())
+                .educationalInformationList(candidate.getEducationalInformationList().stream()
+                        .map(educationalInformation ->
+                                conversionService.convert(educationalInformation, EducationalInformationEntity.class))
+                        .collect(Collectors.toList()))
+                .professionalInformationList(candidate.getProfessionalInformationList().stream()
+                        .map(professionalInformation ->
+                                conversionService.convert(professionalInformation, ProfessionalInformationEntity.class))
+                        .collect(Collectors.toList()))
+                .build();
     }
 }

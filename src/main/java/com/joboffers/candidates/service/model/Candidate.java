@@ -1,8 +1,13 @@
 package com.joboffers.candidates.service.model;
 
+import lombok.Builder;
+import lombok.Getter;
+
 import java.time.LocalDate;
 import java.util.List;
 
+@Getter
+@Builder
 public class Candidate {
 
     private final String name;
@@ -15,7 +20,7 @@ public class Candidate {
     private final List<EducationalInformation> educationalInformationList;
     private final List<ProfessionalInformation> professionalInformationList;
 
-    public Candidate(String name, LocalDate birthday, String gender, String email, String address, String linkedin, String phoneNumber, List<EducationalInformation> educationalInformationList, List<ProfessionalInformation> professionalInformationList) {
+    public Candidate(final String name, final LocalDate birthday, final String gender, final String email, final String address, final String linkedin, final String phoneNumber, final List<EducationalInformation> educationalInformationList, final List<ProfessionalInformation> professionalInformationList) {
         this.name = name;
         this.birthday = birthday;
         this.gender = gender;
@@ -27,39 +32,4 @@ public class Candidate {
         this.professionalInformationList = professionalInformationList;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public LocalDate getBirthday() {
-        return birthday;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getLinkedin() {
-        return linkedin;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public List<EducationalInformation> getEducationalInformationList() {
-        return educationalInformationList;
-    }
-
-    public List<ProfessionalInformation> getProfessionalInformationList() {
-        return professionalInformationList;
-    }
 }

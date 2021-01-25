@@ -14,17 +14,16 @@ public class ProfessionalInformationToProfessionalInformationEntityConverter imp
 
     @Override
     public ProfessionalInformationEntity convert(final ProfessionalInformation professionalInformation) {
-        final ProfessionalInformationEntity professionalInformationEntity = new ProfessionalInformationEntity();
-        professionalInformationEntity.setName(professionalInformation.getName());
-        professionalInformationEntity.setNotes(professionalInformation.getNotes());
-        professionalInformationEntity.setDescription(professionalInformation.getDescription());
-        professionalInformationEntity.setStartDate(professionalInformation.getStartDate());
-        professionalInformationEntity.setEndDate(professionalInformation.getEndDate());
-        professionalInformationEntity.setTechnologyList(professionalInformation.getTechnologyList().stream()
-                .map(technology ->
-                        conversionService.convert(technology, TechnologyEntity.class))
-                .collect(Collectors.toList()));
-
-        return professionalInformationEntity;
+        return ProfessionalInformationEntity.builder()
+                .name(professionalInformation.getName())
+                .notes(professionalInformation.getNotes())
+                .description(professionalInformation.getDescription())
+                .startDate(professionalInformation.getStartDate())
+                .endDate(professionalInformation.getEndDate())
+                .technologyList(professionalInformation.getTechnologyList().stream()
+                        .map(technology ->
+                                conversionService.convert(technology, TechnologyEntity.class))
+                        .collect(Collectors.toList()))
+                .build();
     }
 }

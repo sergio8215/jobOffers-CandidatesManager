@@ -1,8 +1,8 @@
 package com.joboffers.candidates.domain.entity;
 
-import com.joboffers.candidates.service.model.Candidate;
-import com.joboffers.candidates.service.model.EducationalInformation;
-import com.joboffers.candidates.service.model.ProfessionalInformation;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
@@ -16,6 +16,9 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "Technologies")
+@Getter
+@Setter
+@Builder
 public class TechnologyEntity {
 
     @Id
@@ -38,29 +41,6 @@ public class TechnologyEntity {
     @JoinColumn(name = "id", nullable = false, updatable = false)
     private ProfessionalInformationEntity professionalInformation;
 */
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getTechnology() {
-        return technology;
-    }
-
-    public void setTechnology(String technology) {
-        this.technology = technology;
-    }
-
-    public EducationalInformationEntity getEducationalInformation() {
-        return educationalInformation;
-    }
-
-    public void setEducationalInformation(EducationalInformationEntity educationalInformation) {
-        this.educationalInformation = educationalInformation;
-    }
 /*
     public ProfessionalInformationEntity getProfessionalInformation() {
         return professionalInformation;

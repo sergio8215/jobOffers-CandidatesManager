@@ -4,7 +4,6 @@ import com.joboffers.candidates.domain.entity.CandidateEntity;
 import com.joboffers.candidates.service.model.Candidate;
 import com.joboffers.candidates.service.model.EducationalInformation;
 import com.joboffers.candidates.service.model.ProfessionalInformation;
-import com.joboffers.candidates.service.model.builder.CandidateBuilder;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -18,18 +17,18 @@ public class CandidateEntityToCandidateConverter implements Converter<CandidateE
 
     @Override
     public Candidate convert(final CandidateEntity candidateEntity) {
-        return CandidateBuilder.aCandidate()
-                .withName(candidateEntity.getName())
-                .withAddress(candidateEntity.getAddress())
-                .withBirthday(candidateEntity.getBirthday())
-                .withEmail(candidateEntity.getEmail())
-                .withGender(candidateEntity.getGender())
-                .withLinkedin(candidateEntity.getLinkedIn())
-                .withPhoneNumber(candidateEntity.getPhoneNumber())
-                .withProfessionalInformationList(candidateEntity.getProfessionalInformationList().stream()
+        return Candidate.builder()
+                .name(candidateEntity.getName())
+                .address(candidateEntity.getAddress())
+                .birthday(candidateEntity.getBirthday())
+                .email(candidateEntity.getEmail())
+                .gender(candidateEntity.getGender())
+                .linkedin(candidateEntity.getLinkedIn())
+                .phoneNumber(candidateEntity.getPhoneNumber())
+                .professionalInformationList(candidateEntity.getProfessionalInformationList().stream()
                         .map(professionalInformationEntity -> conversionService.convert(professionalInformationEntity, ProfessionalInformation.class))
                         .collect(Collectors.toList()))
-                .withEducationalInformationList(candidateEntity.getEducationalInformationList().stream()
+                .educationalInformationList(candidateEntity.getEducationalInformationList().stream()
                         .map(educationalInformationEntity -> conversionService.convert(educationalInformationEntity, EducationalInformation.class))
                         .collect(Collectors.toList()))
                 .build();

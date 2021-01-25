@@ -1,7 +1,8 @@
 package com.joboffers.candidates.domain.entity;
 
-import com.joboffers.candidates.service.model.Candidate;
-import com.joboffers.candidates.service.model.Technology;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
@@ -21,6 +22,9 @@ import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Table(name = "EducationalInformations")
+@Getter
+@Setter
+@Builder
 public class EducationalInformationEntity {
 
     @Id
@@ -57,67 +61,4 @@ public class EducationalInformationEntity {
     @JoinColumn(name = "id", nullable = false, updatable = false)
     private CandidateEntity candidate;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getCourse() {
-        return course;
-    }
-
-    public void setCourse(String course) {
-        this.course = course;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
-    }
-
-    public List<TechnologyEntity> getTechnologyList() {
-        return technologyList;
-    }
-
-    public void setTechnologyList(List<TechnologyEntity> technologyList) {
-        this.technologyList = technologyList;
-    }
 }

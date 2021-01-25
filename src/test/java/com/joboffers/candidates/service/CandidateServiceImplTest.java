@@ -117,11 +117,13 @@ class CandidateServiceImplTest {
     @Test
     void getListOfCandidatesByTechnology_givenATechnologyName_whenGetListOfCandidatesByTechnologyIsTriggered_thenReturnAListOfCandidatesThatHasExperienceWithTheTechnology() {
 
-        final TechnologyEntity technologyEntity = new TechnologyEntity();
-        technologyEntity.setTechnology(TECHNOLOGY_NAME);
+        final TechnologyEntity technologyEntity = TechnologyEntity.builder()
+                .technology(TECHNOLOGY_NAME)
+                .build();
 
-        final EducationalInformationEntity educationalInformationEntity = new EducationalInformationEntity();
-        educationalInformationEntity.setTechnologyList(of(technologyEntity));
+        final EducationalInformationEntity educationalInformationEntity = EducationalInformationEntity.builder()
+                .technologyList(of(technologyEntity))
+                .build();
 
         final CandidateEntity candidateEntity = TestObjectFactory.createCandidateEntity(
                 of(educationalInformationEntity), emptyList());

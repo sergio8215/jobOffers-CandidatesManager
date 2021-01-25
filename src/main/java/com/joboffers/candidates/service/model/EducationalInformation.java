@@ -1,8 +1,13 @@
 package com.joboffers.candidates.service.model;
 
+import lombok.Builder;
+import lombok.Getter;
+
 import java.time.LocalDate;
 import java.util.List;
 
+@Getter
+@Builder
 public class EducationalInformation {
     private final String name;
     private final String description;
@@ -12,7 +17,7 @@ public class EducationalInformation {
     private final String place;
     private final List<Technology> technologyList;
 
-    public EducationalInformation(String name, String description, LocalDate startDate, LocalDate endDate, String course, String place, List<Technology> technologyList) {
+    public EducationalInformation(final String name, final String description, final LocalDate startDate, final LocalDate endDate, final String course, final String place, final List<Technology> technologyList) {
         this.name = name;
         this.description = description;
         this.startDate = startDate;
@@ -22,31 +27,4 @@ public class EducationalInformation {
         this.technologyList = technologyList;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public String getCourse() {
-        return course;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public List<Technology> getTechnologyList() {
-        return technologyList;
-    }
 }

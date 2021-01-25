@@ -14,17 +14,16 @@ public class EducationalInformationToEducationalInformationEntityConverter imple
 
     @Override
     public EducationalInformationEntity convert(final EducationalInformation educationalInformation) {
-        final EducationalInformationEntity educationalInformationEntity = new EducationalInformationEntity();
-        educationalInformationEntity.setName(educationalInformation.getName());
-        educationalInformationEntity.setPlace(educationalInformation.getPlace());
-        educationalInformationEntity.setCourse(educationalInformation.getCourse());
-        educationalInformationEntity.setDescription(educationalInformation.getDescription());
-        educationalInformationEntity.setStartDate(educationalInformation.getStartDate());
-        educationalInformationEntity.setEndDate(educationalInformation.getEndDate());
-        educationalInformationEntity.setTechnologyList(educationalInformation.getTechnologyList().stream().map(technology ->
-                conversionService.convert(technology, TechnologyEntity.class))
-                .collect(Collectors.toList()));
-
-        return educationalInformationEntity;
+        return EducationalInformationEntity.builder()
+                .name(educationalInformation.getName())
+                .place(educationalInformation.getPlace())
+                .course(educationalInformation.getCourse())
+                .description(educationalInformation.getDescription())
+                .startDate(educationalInformation.getStartDate())
+                .endDate(educationalInformation.getEndDate())
+                .technologyList(educationalInformation.getTechnologyList().stream().map(technology ->
+                        conversionService.convert(technology, TechnologyEntity.class))
+                        .collect(Collectors.toList()))
+                .build();
     }
 }

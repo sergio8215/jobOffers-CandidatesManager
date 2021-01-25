@@ -1,5 +1,8 @@
 package com.joboffers.candidates.domain.entity;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
@@ -16,6 +19,9 @@ import static javax.persistence.CascadeType.ALL;
 
 @Entity
 @Table(name = "candidates")
+@Getter
+@Setter
+@Builder
 public class CandidateEntity {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -53,84 +59,4 @@ public class CandidateEntity {
     @OneToMany(cascade = ALL, mappedBy = "candidates")
     private List<ProfessionalInformationEntity> professionalInformationList;
 
-
-    public UUID getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public LocalDate getBirthday() {
-        return birthday;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getLinkedIn() {
-        return linkedIn;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public List<EducationalInformationEntity> getEducationalInformationList() {
-        return educationalInformationList;
-    }
-
-    public List<ProfessionalInformationEntity> getProfessionalInformationList() {
-        return professionalInformationList;
-    }
-
-    public void setId(final UUID id) {
-        this.id = id;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public void setBirthday(final LocalDate birthday) {
-        this.birthday = birthday;
-    }
-
-    public void setGender(final String gender) {
-        this.gender = gender;
-    }
-
-    public void setEmail(final String email) {
-        this.email = email;
-    }
-
-    public void setAddress(final String address) {
-        this.address = address;
-    }
-
-    public void setLinkedIn(final String linkedIn) {
-        this.linkedIn = linkedIn;
-    }
-
-    public void setPhoneNumber(final String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setEducationalInformationList(final List<EducationalInformationEntity> educationalInformationList) {
-        this.educationalInformationList = educationalInformationList;
-    }
-
-    public void setProfessionalInformationList(final List<ProfessionalInformationEntity> professionalInformationList) {
-        this.professionalInformationList = professionalInformationList;
-    }
 }

@@ -9,9 +9,6 @@ import com.joboffers.candidates.service.model.EducationalInformation;
 import com.joboffers.candidates.service.model.Gender;
 import com.joboffers.candidates.service.model.ProfessionalInformation;
 import com.joboffers.candidates.service.model.Technology;
-import com.joboffers.candidates.service.model.builder.CandidateBuilder;
-import com.joboffers.candidates.service.model.builder.EducationalInformationBuilder;
-import com.joboffers.candidates.service.model.builder.ProfessionalInformationBuilder;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,48 +17,47 @@ import java.util.UUID;
 public final class TestObjectFactory {
 
     public static Candidate createEmptyCandidate() {
-        return CandidateBuilder.aCandidate()
-                .build();
+        return Candidate.builder().build();
     }
 
     public static Candidate createCandidate(
-            final List<EducationalInformation> ei,
-            final List<ProfessionalInformation> pi) {
+            final List<EducationalInformation> educationalInformationList,
+            final List<ProfessionalInformation> professionalInformationList) {
 
-        return CandidateBuilder.aCandidate()
-                .withName("Patricia")
-                .withBirthday(LocalDate.of(1990, 10, 10))
-                .withGender(Gender.WOMAN)
-                .withEmail("patricia@candidate.com")
-                .withAddress("Valencia 124")
-                .withLinkedin("linkedin.com/patricia")
-                .withPhoneNumber("6223344")
-                .withEducationalInformationList(ei)
-                .withProfessionalInformationList(pi)
+        return Candidate.builder()
+                .name("Patricia")
+                .birthday(LocalDate.of(1990, 10, 10))
+                .gender(Gender.WOMAN)
+                .email("patricia@candidate.com")
+                .address("Valencia 124")
+                .linkedin("linkedin.com/patricia")
+                .phoneNumber("6223344")
+                .educationalInformationList(educationalInformationList)
+                .professionalInformationList(professionalInformationList)
                 .build();
     }
 
     public static CandidateEntity createEmptyCandidateEntity() {
-        final CandidateEntity candidateEntity = new CandidateEntity();
-        candidateEntity.setId(UUID.randomUUID());
-        return candidateEntity;
+        return CandidateEntity.builder()
+                .id(UUID.randomUUID())
+                .build();
     }
 
     public static CandidateEntity createCandidateEntity(
-            final List<EducationalInformationEntity> ei,
-            final List<ProfessionalInformationEntity> pi) {
+            final List<EducationalInformationEntity> educationalInformationEntityList,
+            final List<ProfessionalInformationEntity> professionalInformationEntityList) {
 
-        final CandidateEntity candidateEntity = new CandidateEntity();
-        candidateEntity.setName("Patricia");
-        candidateEntity.setBirthday(LocalDate.of(1990, 10, 10));
-        candidateEntity.setGender(Gender.WOMAN);
-        candidateEntity.setEmail("patricia@candidate.com");
-        candidateEntity.setAddress("Valencia 124");
-        candidateEntity.setLinkedIn("linkedin.com/patricia");
-        candidateEntity.setPhoneNumber("6223344");
-        candidateEntity.setEducationalInformationList(ei);
-        candidateEntity.setProfessionalInformationList(pi);
-        return candidateEntity;
+        return CandidateEntity.builder()
+                .name("Patricia")
+                .birthday(LocalDate.of(1990, 10, 10))
+                .gender(Gender.WOMAN)
+                .email("patricia@candidate.com")
+                .address("Valencia 124")
+                .linkedIn("linkedin.com/patricia")
+                .phoneNumber("6223344")
+                .educationalInformationList(educationalInformationEntityList)
+                .professionalInformationList(professionalInformationEntityList)
+                .build();
     }
 
     public static EducationalInformation createEducationalInformation(
@@ -69,14 +65,14 @@ public final class TestObjectFactory {
             final LocalDate endDate,
             final List<Technology> technologyList) {
 
-        return EducationalInformationBuilder.anEducationalInformation()
-                .withName("University")
-                .withDescription("Informatics Engineering")
-                .withStartDate(startDate)
-                .withEndDate(endDate)
-                .withCourse("Java programming")
-                .withPlace("UPC")
-                .withTechnologyList(technologyList)
+        return EducationalInformation.builder()
+                .name("University")
+                .description("Informatics Engineering")
+                .startDate(startDate)
+                .endDate(endDate)
+                .course("Java programming")
+                .place("UPC")
+                .technologyList(technologyList)
                 .build();
     }
 
@@ -85,14 +81,14 @@ public final class TestObjectFactory {
             final LocalDate endDate,
             final List<TechnologyEntity> technologyList) {
 
-        final EducationalInformationEntity educationalInformationEntity = new EducationalInformationEntity();
-        educationalInformationEntity.setDescription("Informatics Engineering");
-        educationalInformationEntity.setStartDate(startDate);
-        educationalInformationEntity.setEndDate(endDate);
-        educationalInformationEntity.setCourse("Java programming");
-        educationalInformationEntity.setPlace("UPC");
-        educationalInformationEntity.setTechnologyList(technologyList);
-        return educationalInformationEntity;
+        return EducationalInformationEntity.builder()
+                .description("Informatics Engineering")
+                .startDate(startDate)
+                .endDate(endDate)
+                .course("Java programming")
+                .place("UPC")
+                .technologyList(technologyList)
+                .build();
     }
 
     public static ProfessionalInformation createProfessionalInformation(
@@ -100,13 +96,13 @@ public final class TestObjectFactory {
             final LocalDate endDate,
             final List<Technology> technologyList) {
 
-        return ProfessionalInformationBuilder.aProfessionalInformation()
-                .withName("First company job")
-                .withDescription("Informatics Engineering at a consultant company")
-                .withStartDate(startDate)
-                .withEndDate(endDate)
-                .withNotes("Working as a Java programmer for 10 years")
-                .withTechnologyList(technologyList)
+        return ProfessionalInformation.builder()
+                .name("First company job")
+                .description("Informatics Engineering at a consultant company")
+                .startDate(startDate)
+                .endDate(endDate)
+                .notes("Working as a Java programmer for 10 years")
+                .technologyList(technologyList)
                 .build();
     }
 }
