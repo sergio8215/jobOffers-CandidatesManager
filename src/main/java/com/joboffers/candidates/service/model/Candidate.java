@@ -15,18 +15,18 @@ public class Candidate {
     private final String gender;
     private final String email;
     private final String address;
-    private final String linkedin;
+    private final String linkedIn;
     private final String phoneNumber;
     private final List<EducationalInformation> educationalInformationList;
     private final List<ProfessionalInformation> professionalInformationList;
 
-    public Candidate(final String name, final LocalDate birthday, final String gender, final String email, final String address, final String linkedin, final String phoneNumber, final List<EducationalInformation> educationalInformationList, final List<ProfessionalInformation> professionalInformationList) {
+    public Candidate(final String name, final LocalDate birthday, final String gender, final String email, final String address, final String linkedIn, final String phoneNumber, final List<EducationalInformation> educationalInformationList, final List<ProfessionalInformation> professionalInformationList) {
         this.name = name;
         this.birthday = birthday;
         this.gender = gender;
         this.email = email;
         this.address = address;
-        this.linkedin = linkedin;
+        this.linkedIn = linkedIn;
         this.phoneNumber = phoneNumber;
         this.educationalInformationList = educationalInformationList;
         this.professionalInformationList = professionalInformationList;

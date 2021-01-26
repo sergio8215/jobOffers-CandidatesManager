@@ -30,7 +30,7 @@ public final class TestObjectFactory {
                 .gender(Gender.WOMAN)
                 .email("patricia@candidate.com")
                 .address("Valencia 124")
-                .linkedin("linkedin.com/patricia")
+                .linkedIn("linkedin.com/patricia")
                 .phoneNumber("6223344")
                 .educationalInformationList(educationalInformationList)
                 .professionalInformationList(professionalInformationList)
