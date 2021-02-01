@@ -5,9 +5,11 @@ import com.joboffers.candidates.domain.entity.TechnologyEntity;
 import com.joboffers.candidates.service.model.ProfessionalInformation;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
+@Component
 public class ProfessionalInformationToProfessionalInformationEntityConverter implements Converter<ProfessionalInformation, ProfessionalInformationEntity> {
 
     private ConversionService conversionService;

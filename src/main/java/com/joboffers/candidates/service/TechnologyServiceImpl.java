@@ -6,10 +6,13 @@ import com.joboffers.candidates.service.model.ProfessionalInformation;
 import com.joboffers.candidates.service.model.Technology;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static java.util.Objects.isNull;
 
 @Service
 class TechnologyServiceImpl implements TechnologyService {
@@ -18,11 +21,22 @@ class TechnologyServiceImpl implements TechnologyService {
 
     @Override
     public Map<String, Integer> calculateExperience(final Candidate candidate) {
+
+        if (isNull(candidate)) {
+            throw new IllegalArgumentException("Candidate can't be null");
+        }
+        if (isNull(candidate.getEducationalInformationList())) {
+            candidate.setEducationalInformationList(List.of());
+        }
+        if (isNull(candidate.getProfessionalInformationList())) {
+            candidate.setProfessionalInformationList(List.of());
+        }
+
         final List<EducationalInformation> educationalInformationList = candidate.getEducationalInformationList();
-        final List<ProfessionalInformation> professionalInformationList = candidate.getProfessionalInformationList(); // TODO hay que validar que no sea null si no da error.
+        final List<ProfessionalInformation> professionalInformationList = candidate.getProfessionalInformationList();
         final Map<String, Integer> technologyMap = new HashMap();
 
-        educationalInformationList.forEach(educationalInformation -> { // TODO private method que recibe una lista
+        educationalInformationList.forEach(educationalInformation -> {
             final List<Technology> educationalTechnologyList = educationalInformation.getTechnologyList();
 
             educationalTechnologyList.forEach(tech -> {
@@ -54,7 +68,15 @@ class TechnologyServiceImpl implements TechnologyService {
     }
 
     @Override
-    public List<Candidate> findCandidatesWithTechnologyExperience(final String technologyName) {
-        return candidateService.getListOfCandidatesByTechnology(technologyName);
+    public List<Candidate> findCandidatesWithTechnologyExperience(final String technologyName, final SortOrder sortOrder) {
+
+        final List<Candidate> candidateList = candidateService.getListOfCandidatesByTechnologyOrdered(technologyName, sortOrder);
+        final Map<Candidate, Integer> candidateExperience = new HashMap<>();
+        candidateList.forEach(candidate -> {
+            final Integer monthsExperience = calculateExperience(candidate).get(technologyName);
+            candidateExperience.put(candidate, monthsExperience);
+        });
+
+        return candidateList;
     }
 }

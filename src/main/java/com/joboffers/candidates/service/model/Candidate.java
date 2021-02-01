@@ -2,23 +2,25 @@ package com.joboffers.candidates.service.model;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Getter
+@Setter
 @Builder
 public class Candidate {
 
-    private final String name;
-    private final LocalDate birthday;
-    private final String gender;
-    private final String email;
-    private final String address;
-    private final String linkedIn;
-    private final String phoneNumber;
-    private final List<EducationalInformation> educationalInformationList;
-    private final List<ProfessionalInformation> professionalInformationList;
+    private String name;
+    private LocalDate birthday;
+    private String gender;
+    private String email;
+    private String address;
+    private String linkedIn;
+    private String phoneNumber;
+    private List<EducationalInformation> educationalInformationList;
+    private List<ProfessionalInformation> professionalInformationList;
 
     public Candidate(final String name, final LocalDate birthday, final String gender, final String email, final String address, final String linkedIn, final String phoneNumber, final List<EducationalInformation> educationalInformationList, final List<ProfessionalInformation> professionalInformationList) {
         this.name = name;

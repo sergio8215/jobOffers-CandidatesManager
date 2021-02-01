@@ -10,8 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
@@ -54,7 +54,8 @@ public class EducationalInformationEntity {
     @Column(name = "place")
     private String place;
 
-    @OneToMany(cascade = ALL, mappedBy = "EducationalInformations")
+    @ManyToMany(cascade = ALL, mappedBy = "EducationalInformations")
+    @Column(name = "technologyList", nullable = false)
     private List<TechnologyEntity> technologyList;
 
     @ManyToOne(optional = false, fetch = LAZY)

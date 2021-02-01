@@ -6,9 +6,11 @@ import com.joboffers.candidates.domain.entity.ProfessionalInformationEntity;
 import com.joboffers.candidates.service.model.Candidate;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
+@Component
 public class CandidateToCandidateEntityConverter implements Converter<Candidate, CandidateEntity> {
 
     private ConversionService conversionService;

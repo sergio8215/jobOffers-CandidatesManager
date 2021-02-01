@@ -9,9 +9,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -35,18 +37,33 @@ public class TechnologyEntity {
 
     @ManyToMany
     @JoinTable(name = "technologies_candidates")
-    private EducationalInformationEntity educationalInformation;
+    private List<EducationalInformationEntity> educationalInformationList;
 
-    /*@ManyToMany(optional = false, fetch = LAZY)
+    @ManyToMany
     @JoinColumn(name = "id", nullable = false, updatable = false)
-    private ProfessionalInformationEntity professionalInformation;
-*/
-/*
-    public ProfessionalInformationEntity getProfessionalInformation() {
-        return professionalInformation;
+    private List<ProfessionalInformationEntity> professionalInformationList;
+
+    public String getTechnology() {
+        return technology;
     }
 
-    public void setProfessionalInformation(ProfessionalInformationEntity professionalInformation) {
-        this.professionalInformation = professionalInformation;
-    }*/
+    public void setTechnology(final String technology) {
+        this.technology = technology;
+    }
+
+    public List<EducationalInformationEntity> getEducationalInformationList() {
+        return educationalInformationList;
+    }
+
+    public void setEducationalInformationList(final List<EducationalInformationEntity> educationalInformationList) {
+        this.educationalInformationList = educationalInformationList;
+    }
+
+    public List<ProfessionalInformationEntity> getProfessionalInformationList() {
+        return professionalInformationList;
+    }
+
+    public void setProfessionalInformationList(final List<ProfessionalInformationEntity> professionalInformationList) {
+        this.professionalInformationList = professionalInformationList;
+    }
 }

@@ -9,4 +9,8 @@ import java.util.UUID;
 public interface CandidateRepository extends CrudRepository<CandidateEntity, UUID> {
 
     List<CandidateEntity> findByTechnology(String technologyName);
+
+    List<CandidateEntity> findByTechnologyByOderAsc(String technologyName);
+
+    List<CandidateEntity> findByTechnologyByOrderDesc(String technologyName);
 }

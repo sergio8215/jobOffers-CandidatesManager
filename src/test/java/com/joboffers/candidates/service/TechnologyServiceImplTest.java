@@ -17,6 +17,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import static javax.swing.SortOrder.UNSORTED;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -152,6 +154,20 @@ class TechnologyServiceImplTest {
     }
 
     @Test
+    void calculateExperience_givenANonExistentEducationalAndProfessionalInformation_whenCalculateExperienceIsTriggered_thenReturnZeroMonths() {
+        final Candidate candidate = TestObjectFactory.createCandidate(null, null);
+        final Map<String, Integer> monthsOfExperience = underTest.calculateExperience(candidate);
+        assertEquals(0, monthsOfExperience.size());
+    }
+
+    @Test
+    void calculateExperience_givenANullCandidate_whenCalculateExperienceIsTriggered_thenThrowIllegalArgumentException() {
+        assertThatThrownBy(() -> underTest.calculateExperience(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Candidate can't be null");
+    }
+
+    @Test
     void findCandidatesWithTechnologyExperience_givenAnExistingCandidate_whenFindCandidatesWithTechnologyExperienceIsTriggered_thenCalculateItWithProfessionalInformation() {
         final Technology technology = new Technology("java");
         final List<Technology> jobTechnologies = new ArrayList<>();
@@ -172,12 +188,12 @@ class TechnologyServiceImplTest {
         candidateList.add(candidate1);
         candidateList.add(candidate2);
 
-        when(candidateService.getListOfCandidatesByTechnology("java"))
+        when(candidateService.getListOfCandidatesByTechnologyOrdered("java", UNSORTED))
                 .thenReturn(candidateList);
 
-        final List<Candidate> candidates = underTest.findCandidatesWithTechnologyExperience("java");
+        final List<Candidate> candidates = underTest.findCandidatesWithTechnologyExperience("java", UNSORTED);
         assertEquals(2, candidates.size());
-        verify(candidateService).getListOfCandidatesByTechnology("java");
+        verify(candidateService).getListOfCandidatesByTechnologyOrdered("java", UNSORTED);
         verifyNoMoreInteractions(candidateService);
     }
 }

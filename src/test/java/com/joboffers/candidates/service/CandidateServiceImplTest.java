@@ -23,6 +23,7 @@ import java.util.UUID;
 import static java.util.Collections.emptyList;
 import static java.util.List.of;
 import static java.util.Optional.empty;
+import static javax.swing.SortOrder.UNSORTED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.verify;
@@ -144,7 +145,7 @@ class CandidateServiceImplTest {
         when(conversionService.convert(candidateEntity, Candidate.class))
                 .thenReturn(candidate);
 
-        final List<Candidate> candidateList = underTest.getListOfCandidatesByTechnology(TECHNOLOGY_NAME);
+        final List<Candidate> candidateList = underTest.getListOfCandidatesByTechnologyOrdered(TECHNOLOGY_NAME, UNSORTED);
         assertThat(candidateList.size()).isEqualTo(1);
         verify(candidateRepository).findByTechnology(TECHNOLOGY_NAME);
         verify(conversionService).convert(candidateEntity, Candidate.class);
@@ -157,7 +158,7 @@ class CandidateServiceImplTest {
         when(candidateRepository.findByTechnology(TECHNOLOGY_NAME))
                 .thenReturn(of());
 
-        final List<Candidate> candidateList = underTest.getListOfCandidatesByTechnology(TECHNOLOGY_NAME);
+        final List<Candidate> candidateList = underTest.getListOfCandidatesByTechnologyOrdered(TECHNOLOGY_NAME, UNSORTED);
         assertThat(candidateList.size()).isZero();
         verify(candidateRepository).findByTechnology(TECHNOLOGY_NAME);
         verifyNoMoreInteractions(conversionService);
@@ -166,7 +167,7 @@ class CandidateServiceImplTest {
     @Test
     void getListOfCandidatesByTechnology_givenAnEmptyName_whenGetListOfCandidatesByTechnologyIsTriggered_thenReturnAnIllegalArgumentException() {
 
-        assertThatThrownBy(() -> underTest.getListOfCandidatesByTechnology(null))
+        assertThatThrownBy(() -> underTest.getListOfCandidatesByTechnologyOrdered(null, UNSORTED))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Technology name can't be null");
 
