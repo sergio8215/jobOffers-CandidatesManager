@@ -51,12 +51,11 @@ public class ProfessionalInformationEntity {
     @Column(name = "notes", nullable = false)
     private String notes;
 
-    @ManyToMany(cascade = ALL, mappedBy = "ProfessionalInformations")
-    @Column(name = "technologyList", nullable = false)
+    @ManyToMany(cascade = ALL, mappedBy = "professionalInformationList")
     private List<TechnologyEntity> technologyList;
 
     @ManyToOne(optional = false, fetch = LAZY)
-    @JoinColumn(name = "id", nullable = false, updatable = false)
+    @JoinColumn(name = "candidateId", nullable = false, updatable = false)
     private CandidateEntity candidate;
 
 }

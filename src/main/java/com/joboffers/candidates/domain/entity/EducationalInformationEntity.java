@@ -54,12 +54,11 @@ public class EducationalInformationEntity {
     @Column(name = "place")
     private String place;
 
-    @ManyToMany(cascade = ALL, mappedBy = "EducationalInformations")
-    @Column(name = "technologyList", nullable = false)
+    @ManyToMany(cascade = ALL, mappedBy = "educationalInformationList")
     private List<TechnologyEntity> technologyList;
 
     @ManyToOne(optional = false, fetch = LAZY)
-    @JoinColumn(name = "id", nullable = false, updatable = false)
+    @JoinColumn(name = "candidateId", nullable = false, updatable = false)
     private CandidateEntity candidate;
 
 }
