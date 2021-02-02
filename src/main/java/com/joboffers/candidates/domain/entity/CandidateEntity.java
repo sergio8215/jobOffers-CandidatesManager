@@ -38,6 +38,7 @@ public class CandidateEntity {
     @Column(name = "birthday", nullable = false)
     private LocalDate birthday;
 
+    // TODO: might be an enum (WOMAN/MAN/..)
     @Column(name = "gender", nullable = false)
     private String gender;
 
@@ -53,10 +54,10 @@ public class CandidateEntity {
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
-    @OneToMany(cascade = ALL, mappedBy = "candidates")
+    @OneToMany(cascade = ALL, mappedBy = "candidate")
     private List<EducationalInformationEntity> educationalInformationList;
 
-    @OneToMany(cascade = ALL, mappedBy = "candidates")
+    @OneToMany(cascade = ALL, mappedBy = "candidate")
     private List<ProfessionalInformationEntity> professionalInformationList;
 
 }
