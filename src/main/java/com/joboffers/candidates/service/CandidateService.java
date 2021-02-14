@@ -13,5 +13,5 @@ public interface CandidateService {
 
     Optional<Candidate> getCandidate(UUID id);
 
-    List<Candidate> getListOfCandidatesByTechnologyOrdered(String java, SortOrder sortOrder);
+    List<Candidate> getListOfCandidatesByTechnologyOrderedByExperience(String technologyName, SortOrder sortOrder);
 }

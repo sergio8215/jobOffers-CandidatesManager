@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Collections.emptyList;
 import static java.util.Objects.isNull;
 
 @Service
@@ -26,27 +27,27 @@ class TechnologyServiceImpl implements TechnologyService {
             throw new IllegalArgumentException("Candidate can't be null");
         }
         if (isNull(candidate.getEducationalInformationList())) {
-            candidate.setEducationalInformationList(List.of());
+            candidate.setEducationalInformationList(emptyList());
         }
         if (isNull(candidate.getProfessionalInformationList())) {
-            candidate.setProfessionalInformationList(List.of());
+            candidate.setProfessionalInformationList(emptyList());
         }
 
         final List<EducationalInformation> educationalInformationList = candidate.getEducationalInformationList();
         final List<ProfessionalInformation> professionalInformationList = candidate.getProfessionalInformationList();
-        final Map<String, Integer> technologyMap = new HashMap();
+        final Map<String, Integer> technologyMap = new HashMap<>();
 
         educationalInformationList.forEach(educationalInformation -> {
             final List<Technology> educationalTechnologyList = educationalInformation.getTechnologyList();
 
             educationalTechnologyList.forEach(tech -> {
-                final Integer pastMonthExperience = technologyMap.getOrDefault(tech.getTechnology().toLowerCase(), 0);
+                final Integer pastMonthExperience = technologyMap.getOrDefault(tech.getName().toLowerCase(), 0);
                 final Integer newMonthExperience = Math.toIntExact(ChronoUnit.MONTHS.between(
                         educationalInformation.getStartDate(),
                         educationalInformation.getEndDate()
                 ));
 
-                technologyMap.put(tech.getTechnology().toLowerCase(), pastMonthExperience + newMonthExperience);
+                technologyMap.put(tech.getName().toLowerCase(), pastMonthExperience + newMonthExperience);
             });
         });
 
@@ -54,13 +55,13 @@ class TechnologyServiceImpl implements TechnologyService {
             final List<Technology> professionalTechnologyList =  professionalInformation.getTechnologyList();
 
             professionalTechnologyList.forEach(tech -> {
-                final Integer pastMonthExperience = technologyMap.getOrDefault(tech.getTechnology().toLowerCase(), 0);
+                final Integer pastMonthExperience = technologyMap.getOrDefault(tech.getName().toLowerCase(), 0);
                 final Integer newMonthExperience = Math.toIntExact(ChronoUnit.MONTHS.between(
                         professionalInformation.getStartDate(),
                         professionalInformation.getEndDate()
                 ));
 
-                technologyMap.put(tech.getTechnology().toLowerCase(), pastMonthExperience + newMonthExperience);
+                technologyMap.put(tech.getName().toLowerCase(), pastMonthExperience + newMonthExperience);
             });
         });
 
@@ -68,15 +69,10 @@ class TechnologyServiceImpl implements TechnologyService {
     }
 
     @Override
-    public List<Candidate> findCandidatesWithTechnologyExperience(final String technologyName, final SortOrder sortOrder) {
+    public List<Candidate> findCandidatesByTechnologyOrderedByExperience(final String technologyName, final SortOrder sortOrder) {
 
-        final List<Candidate> candidateList = candidateService.getListOfCandidatesByTechnologyOrdered(technologyName, sortOrder);
-        final Map<Candidate, Integer> candidateExperience = new HashMap<>();
-        candidateList.forEach(candidate -> {
-            final Integer monthsExperience = calculateExperience(candidate).get(technologyName);
-            candidateExperience.put(candidate, monthsExperience);
-        });
-
-        return candidateList;
+        return candidateService.getListOfCandidatesByTechnologyOrderedByExperience(technologyName, sortOrder);
     }
+
+
 }

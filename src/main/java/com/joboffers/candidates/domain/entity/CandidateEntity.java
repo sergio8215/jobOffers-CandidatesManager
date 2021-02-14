@@ -38,7 +38,6 @@ public class CandidateEntity {
     @Column(name = "birthday", nullable = false)
     private LocalDate birthday;
 
-    // TODO: might be an enum (WOMAN/MAN/..)
     @Column(name = "gender", nullable = false)
     private String gender;
 

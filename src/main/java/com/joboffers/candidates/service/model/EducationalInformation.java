@@ -15,6 +15,6 @@ public class EducationalInformation {
     private final LocalDate endDate;
     private final String course;
     private final String place;
-    private final List<Technology> technologyList; // TODO como calcular la experiencia al crear el objecto eduactional information
+    private final List<Technology> technologyList;
 
 }

@@ -145,7 +145,7 @@ class CandidateServiceImplTest {
         when(conversionService.convert(candidateEntity, Candidate.class))
                 .thenReturn(candidate);
 
-        final List<Candidate> candidateList = underTest.getListOfCandidatesByTechnologyOrdered(TECHNOLOGY_NAME, UNSORTED);
+        final List<Candidate> candidateList = underTest.getListOfCandidatesByTechnologyOrderedByExperience(TECHNOLOGY_NAME, UNSORTED);
         assertThat(candidateList.size()).isEqualTo(1);
         verify(candidateRepository).findByTechnology(TECHNOLOGY_NAME);
         verify(conversionService).convert(candidateEntity, Candidate.class);
@@ -158,7 +158,7 @@ class CandidateServiceImplTest {
         when(candidateRepository.findByTechnology(TECHNOLOGY_NAME))
                 .thenReturn(of());
 
-        final List<Candidate> candidateList = underTest.getListOfCandidatesByTechnologyOrdered(TECHNOLOGY_NAME, UNSORTED);
+        final List<Candidate> candidateList = underTest.getListOfCandidatesByTechnologyOrderedByExperience(TECHNOLOGY_NAME, UNSORTED);
         assertThat(candidateList.size()).isZero();
         verify(candidateRepository).findByTechnology(TECHNOLOGY_NAME);
         verifyNoMoreInteractions(conversionService);
@@ -167,7 +167,7 @@ class CandidateServiceImplTest {
     @Test
     void getListOfCandidatesByTechnology_givenAnEmptyName_whenGetListOfCandidatesByTechnologyIsTriggered_thenReturnAnIllegalArgumentException() {
 
-        assertThatThrownBy(() -> underTest.getListOfCandidatesByTechnologyOrdered(null, UNSORTED))
+        assertThatThrownBy(() -> underTest.getListOfCandidatesByTechnologyOrderedByExperience(null, UNSORTED))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Technology name can't be null");
 

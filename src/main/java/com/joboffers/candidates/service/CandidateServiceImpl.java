@@ -51,7 +51,7 @@ class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public List<Candidate> getListOfCandidatesByTechnologyOrdered(final String technologyName, SortOrder sortOrder) {
+    public List<Candidate> getListOfCandidatesByTechnologyOrderedByExperience(final String technologyName, SortOrder sortOrder) {
 
         if (isNull(technologyName)) {
             throw new IllegalArgumentException("Technology name can't be null");
@@ -64,7 +64,7 @@ class CandidateServiceImpl implements CandidateService {
 
         switch (sortOrder) {
             case ASCENDING:
-                candidateList = candidateRepository.findByTechnologyByOderAsc(technologyName);
+                candidateList = candidateRepository.findByTechnologyByOrderAsc(technologyName);
                 break;
             case DESCENDING:
                 candidateList = candidateRepository.findByTechnologyByOrderDesc(technologyName);

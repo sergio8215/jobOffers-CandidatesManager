@@ -1,14 +1,14 @@
 package com.joboffers.candidates.service.model;
 
 public class Technology {
-    private final String technology;
+    private final String name;
 
-    public Technology(String technology) {
-        this.technology = technology;
+    public Technology(final String name) {
+        this.name = name;
     }
 
-    public String getTechnology() {
-        return technology;
+    public String getName() {
+        return name;
     }
 
 }

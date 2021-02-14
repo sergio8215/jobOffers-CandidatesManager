@@ -10,5 +10,5 @@ public interface TechnologyService {
 
     Map<String, Integer> calculateExperience(Candidate candidate);
 
-    List<Candidate> findCandidatesWithTechnologyExperience(String technologyName, SortOrder sortOrder);
+    List<Candidate> findCandidatesByTechnologyOrderedByExperience(String technologyName, SortOrder sortOrder);
 }

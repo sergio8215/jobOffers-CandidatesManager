@@ -10,7 +10,7 @@ public interface CandidateRepository extends CrudRepository<CandidateEntity, UUI
 
     List<CandidateEntity> findByTechnology(String technologyName);
 
-    List<CandidateEntity> findByTechnologyByOderAsc(String technologyName);
+    List<CandidateEntity> findByTechnologyByOrderAsc(String technologyName);
 
     List<CandidateEntity> findByTechnologyByOrderDesc(String technologyName);
 }

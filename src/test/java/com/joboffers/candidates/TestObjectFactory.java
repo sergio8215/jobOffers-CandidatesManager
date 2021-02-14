@@ -6,7 +6,6 @@ import com.joboffers.candidates.domain.entity.ProfessionalInformationEntity;
 import com.joboffers.candidates.domain.entity.TechnologyEntity;
 import com.joboffers.candidates.service.model.Candidate;
 import com.joboffers.candidates.service.model.EducationalInformation;
-import com.joboffers.candidates.service.model.Gender;
 import com.joboffers.candidates.service.model.ProfessionalInformation;
 import com.joboffers.candidates.service.model.Technology;
 
@@ -14,7 +13,12 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+import static com.joboffers.candidates.service.model.Gender.WOMAN;
+
 public final class TestObjectFactory {
+
+    private TestObjectFactory() {
+    }
 
     public static Candidate createEmptyCandidate() {
         return Candidate.builder().build();
@@ -27,7 +31,7 @@ public final class TestObjectFactory {
         return Candidate.builder()
                 .name("Patricia")
                 .birthday(LocalDate.of(1990, 10, 10))
-                .gender(Gender.WOMAN)
+                .gender(WOMAN)
                 .email("patricia@candidate.com")
                 .address("Valencia 124")
                 .linkedIn("linkedin.com/patricia")
@@ -50,7 +54,7 @@ public final class TestObjectFactory {
         return CandidateEntity.builder()
                 .name("Patricia")
                 .birthday(LocalDate.of(1990, 10, 10))
-                .gender(Gender.WOMAN)
+                .gender(WOMAN)
                 .email("patricia@candidate.com")
                 .address("Valencia 124")
                 .linkedIn("linkedin.com/patricia")

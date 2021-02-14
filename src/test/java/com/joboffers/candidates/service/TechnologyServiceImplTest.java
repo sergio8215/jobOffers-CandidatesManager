@@ -168,7 +168,7 @@ class TechnologyServiceImplTest {
     }
 
     @Test
-    void findCandidatesWithTechnologyExperience_givenAnExistingCandidate_whenFindCandidatesWithTechnologyExperienceIsTriggered_thenCalculateItWithProfessionalInformation() {
+    void findCandidatesWithTechnologyExperience_givenExistentCandidates_whenFindCandidatesWithTechnologyExperienceIsTriggered_thenCalculateItWithProfessionalInformation() {
         final Technology technology = new Technology("java");
         final List<Technology> jobTechnologies = new ArrayList<>();
         jobTechnologies.add(technology);
@@ -188,12 +188,42 @@ class TechnologyServiceImplTest {
         candidateList.add(candidate1);
         candidateList.add(candidate2);
 
-        when(candidateService.getListOfCandidatesByTechnologyOrdered("java", UNSORTED))
+        when(candidateService.getListOfCandidatesByTechnologyOrderedByExperience("java", UNSORTED))
                 .thenReturn(candidateList);
 
-        final List<Candidate> candidates = underTest.findCandidatesWithTechnologyExperience("java", UNSORTED);
+        final List<Candidate> candidates = underTest.findCandidatesByTechnologyOrderedByExperience("java", UNSORTED);
         assertEquals(2, candidates.size());
-        verify(candidateService).getListOfCandidatesByTechnologyOrdered("java", UNSORTED);
+        verify(candidateService).getListOfCandidatesByTechnologyOrderedByExperience("java", UNSORTED);
+        verifyNoMoreInteractions(candidateService);
+    }
+
+    @Test
+    void findCandidatesWithTechnologyExperience_givenANullCandidate_whenFindCandidatesWithTechnologyExperienceIsTriggered_thenCalculateItWithProfessionalInformation() {
+        final Technology technology = new Technology("java");
+        final List<Technology> jobTechnologies = new ArrayList<>();
+        jobTechnologies.add(technology);
+        final ProfessionalInformation professionalInformation = TestObjectFactory.createProfessionalInformation(
+                LocalDate.of(2010, 1, 1),
+                LocalDate.of(2020, 1, 1),
+                jobTechnologies
+        );
+
+        final List<ProfessionalInformation> professionalInformationList = new ArrayList<>();
+        professionalInformationList.add(professionalInformation);
+
+        final Candidate candidate1 = TestObjectFactory.createCandidate(Collections.emptyList(), professionalInformationList);
+        final Candidate candidate2 = TestObjectFactory.createCandidate(Collections.emptyList(), professionalInformationList);
+
+        final List<Candidate> candidateList = new ArrayList<>();
+        candidateList.add(candidate1);
+        candidateList.add(candidate2);
+
+        when(candidateService.getListOfCandidatesByTechnologyOrderedByExperience("java", UNSORTED))
+                .thenReturn(candidateList);
+
+        final List<Candidate> candidates = underTest.findCandidatesByTechnologyOrderedByExperience("java", UNSORTED);
+        assertEquals(2, candidates.size());
+        verify(candidateService).getListOfCandidatesByTechnologyOrderedByExperience("java", UNSORTED);
         verifyNoMoreInteractions(candidateService);
     }
 }
