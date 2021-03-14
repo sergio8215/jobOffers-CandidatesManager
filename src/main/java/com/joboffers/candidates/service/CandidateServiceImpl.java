@@ -11,10 +11,8 @@ import javax.swing.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
-import static javax.swing.SortOrder.UNSORTED;
 
 @Service
 class CandidateServiceImpl implements CandidateService {
@@ -46,13 +44,14 @@ class CandidateServiceImpl implements CandidateService {
         if (isNull(id)) {
             throw new IllegalArgumentException("Candidate id can't be null");
         }
-        
+
         return candidateRepository.findById(id).map(candidateEntity -> conversionService.convert(candidateEntity, Candidate.class));
     }
 
     @Override
-    public List<Candidate> getListOfCandidatesByTechnologyOrderedByExperience(final String technologyName, SortOrder sortOrder) {
+    public List<Candidate> getListOfCandidatesByTechnologyOrderedByExperience(final String technologyName, final SortOrder sortOrder) {
 
+        /*
         if (isNull(technologyName)) {
             throw new IllegalArgumentException("Technology name can't be null");
         }
@@ -60,8 +59,7 @@ class CandidateServiceImpl implements CandidateService {
             sortOrder = UNSORTED;
         }
 
-        final List<CandidateEntity> candidateList;
-
+        final List<CandidateEntity> candidateList = candidateRepository.findByTechnology(technologyName);
         switch (sortOrder) {
             case ASCENDING:
                 candidateList = candidateRepository.findByTechnologyByOrderAsc(technologyName);
@@ -73,10 +71,12 @@ class CandidateServiceImpl implements CandidateService {
                 candidateList = candidateRepository.findByTechnology(technologyName);
                 break;
         }
-
         return candidateList
                 .stream().map(candidateEntity ->
                         conversionService.convert(candidateEntity, Candidate.class)
                 ).collect(Collectors.toList());
+    }
+*/
+        return List.of();
     }
 }

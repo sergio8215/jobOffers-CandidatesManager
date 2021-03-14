@@ -123,7 +123,7 @@ class CandidateServiceImplTest {
                 .build();
 
         final EducationalInformationEntity educationalInformationEntity = EducationalInformationEntity.builder()
-                .technologyList(of(technologyEntity))
+                //.technologyList(of(technologyEntity))
                 .build();
 
         final CandidateEntity candidateEntity = TestObjectFactory.createCandidateEntity(
@@ -140,14 +140,14 @@ class CandidateServiceImplTest {
         final Candidate candidate = TestObjectFactory.createCandidate(
                 of(educationalInformation), emptyList());
 
-        when(candidateRepository.findByTechnology(TECHNOLOGY_NAME))
-                .thenReturn(of(candidateEntity));
+        //when(candidateRepository.findByTechnology(TECHNOLOGY_NAME))
+        //      .thenReturn(of(candidateEntity));
         when(conversionService.convert(candidateEntity, Candidate.class))
                 .thenReturn(candidate);
 
         final List<Candidate> candidateList = underTest.getListOfCandidatesByTechnologyOrderedByExperience(TECHNOLOGY_NAME, UNSORTED);
         assertThat(candidateList.size()).isEqualTo(1);
-        verify(candidateRepository).findByTechnology(TECHNOLOGY_NAME);
+        //verify(candidateRepository).findByTechnology(TECHNOLOGY_NAME);
         verify(conversionService).convert(candidateEntity, Candidate.class);
         verifyNoMoreInteractions(candidateRepository, conversionService);
     }
@@ -155,12 +155,12 @@ class CandidateServiceImplTest {
     @Test
     void getListOfCandidatesByTechnology_givenATechnologyName_whenGetListOfCandidatesByTechnologyIsTriggered_thenReturnAnEmptyListOfCandidates() {
 
-        when(candidateRepository.findByTechnology(TECHNOLOGY_NAME))
-                .thenReturn(of());
+        //when(candidateRepository.findByTechnology(TECHNOLOGY_NAME))
+        //      .thenReturn(of());
 
         final List<Candidate> candidateList = underTest.getListOfCandidatesByTechnologyOrderedByExperience(TECHNOLOGY_NAME, UNSORTED);
         assertThat(candidateList.size()).isZero();
-        verify(candidateRepository).findByTechnology(TECHNOLOGY_NAME);
+        //verify(candidateRepository).findByTechnology(TECHNOLOGY_NAME);
         verifyNoMoreInteractions(conversionService);
     }
 

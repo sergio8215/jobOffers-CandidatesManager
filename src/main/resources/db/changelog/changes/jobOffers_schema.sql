@@ -4,8 +4,8 @@
 
 -- DROP TABLE public.candidates;
 
-CREATE TABLE public.candidates (
-	id int8 NOT NULL,
+create TABLE public.candidates (
+	id UUID NOT NULL,
 	"name" varchar(255) NOT NULL,
 	birthday varchar(255) NOT NULL,
 	gender varchar(255) NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE public.candidates (
 
 -- DROP TABLE public.job_offers;
 
-CREATE TABLE public.job_offers (
+create TABLE public.job_offers (
 	id int8 NOT NULL,
 	"name" date NOT NULL,
 	description text NULL,
@@ -39,7 +39,7 @@ CREATE TABLE public.job_offers (
 
 -- DROP TABLE public.technologies;
 
-CREATE TABLE public.technologies (
+create TABLE public.technologies (
 	id int8 NOT NULL,
 	"name" varchar(255) NOT NULL,
 	CONSTRAINT technologies_name_key UNIQUE (name),
@@ -53,9 +53,9 @@ CREATE TABLE public.technologies (
 
 -- DROP TABLE public.candidates_applications;
 
-CREATE TABLE public.candidates_applications (
+create TABLE public.candidates_applications (
 	job_offer_id int8 NOT NULL,
-	candidate_id int8 NOT NULL,
+	candidate_id UUID NOT NULL,
 	notes text NULL,
 	availability_from date NOT NULL,
 	CONSTRAINT candidates_applications_pkey PRIMARY KEY (job_offer_id, candidate_id),
@@ -70,9 +70,9 @@ CREATE TABLE public.candidates_applications (
 
 -- DROP TABLE public.career_informations;
 
-CREATE TABLE public.career_informations (
+create TABLE public.career_informations (
 	id int8 NOT NULL,
-	candidate_id int8 NOT NULL,
+	candidate_id UUID NOT NULL,
 	school varchar(255) NULL,
 	company varchar(255) NULL,
 	description text NOT NULL,
@@ -92,9 +92,9 @@ CREATE TABLE public.career_informations (
 
 -- DROP TABLE public.cover_letters;
 
-CREATE TABLE public.cover_letters (
+create TABLE public.cover_letters (
 	job_offer_id int8 NOT NULL,
-	candidate_id int8 NOT NULL,
+	candidate_id UUID NOT NULL,
 	description text NOT NULL,
 	"date" date NOT NULL,
 	CONSTRAINT cover_letters_pkey PRIMARY KEY (job_offer_id, candidate_id),
@@ -109,9 +109,9 @@ CREATE TABLE public.cover_letters (
 
 -- DROP TABLE public.technologies_candidates;
 
-CREATE TABLE public.technologies_candidates (
+create TABLE public.technologies_candidates (
 	technology_id int8 NOT NULL,
-	candidate_id int8 NOT NULL,
+	candidate_id UUID NOT NULL,
 	career_information_id int8 NOT NULL,
 	CONSTRAINT technologies_candidates_pkey PRIMARY KEY (technology_id, candidate_id, career_information_id),
 	CONSTRAINT technologies_candidates_fkey1 FOREIGN KEY (technology_id) REFERENCES technologies(id),

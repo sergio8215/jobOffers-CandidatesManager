@@ -34,7 +34,7 @@ public final class TestObjectFactory {
                 .gender(WOMAN)
                 .email("patricia@candidate.com")
                 .address("Valencia 124")
-                .linkedIn("linkedin.com/patricia")
+                .linkedin("linkedin.com/patricia")
                 .phoneNumber("6223344")
                 .educationalInformationList(educationalInformationList)
                 .professionalInformationList(professionalInformationList)
@@ -91,7 +91,7 @@ public final class TestObjectFactory {
                 .endDate(endDate)
                 .course("Java programming")
                 .place("UPC")
-                .technologyList(technologyList)
+                //.technologyList(technologyList)
                 .build();
     }
 

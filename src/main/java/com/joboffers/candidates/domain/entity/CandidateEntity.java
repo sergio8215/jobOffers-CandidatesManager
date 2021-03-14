@@ -47,10 +47,10 @@ public class CandidateEntity {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "linkedIn")
+    @Column(name = "linkedin")
     private String linkedIn;
 
-    @Column(name = "phoneNumber")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @OneToMany(cascade = ALL, mappedBy = "candidate")
@@ -58,5 +58,4 @@ public class CandidateEntity {
 
     @OneToMany(cascade = ALL, mappedBy = "candidate")
     private List<ProfessionalInformationEntity> professionalInformationList;
-
 }

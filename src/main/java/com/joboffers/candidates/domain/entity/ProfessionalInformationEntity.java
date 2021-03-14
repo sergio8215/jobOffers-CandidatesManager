@@ -57,5 +57,4 @@ public class ProfessionalInformationEntity {
     @ManyToOne(optional = false, fetch = LAZY)
     @JoinColumn(name = "candidateId", nullable = false, updatable = false)
     private CandidateEntity candidate;
-
 }

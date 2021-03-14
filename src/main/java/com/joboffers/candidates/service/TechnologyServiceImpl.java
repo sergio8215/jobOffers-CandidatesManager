@@ -1,19 +1,11 @@
 package com.joboffers.candidates.service;
 
 import com.joboffers.candidates.service.model.Candidate;
-import com.joboffers.candidates.service.model.EducationalInformation;
-import com.joboffers.candidates.service.model.ProfessionalInformation;
-import com.joboffers.candidates.service.model.Technology;
 import org.springframework.stereotype.Service;
 
 import javax.swing.*;
-import java.time.temporal.ChronoUnit;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static java.util.Collections.emptyList;
-import static java.util.Objects.isNull;
 
 @Service
 class TechnologyServiceImpl implements TechnologyService {
@@ -22,7 +14,7 @@ class TechnologyServiceImpl implements TechnologyService {
 
     @Override
     public Map<String, Integer> calculateExperience(final Candidate candidate) {
-
+/*
         if (isNull(candidate)) {
             throw new IllegalArgumentException("Candidate can't be null");
         }
@@ -65,7 +57,8 @@ class TechnologyServiceImpl implements TechnologyService {
             });
         });
 
-        return technologyMap;
+        return technologyMap;*/
+        return null;
     }
 
     @Override
