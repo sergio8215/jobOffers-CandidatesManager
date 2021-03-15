@@ -18,11 +18,11 @@ import java.util.UUID;
 
 import static javax.persistence.CascadeType.ALL;
 
-@Entity
-@Table(name = "Technologies")
 @Getter
 @Setter
 @Builder
+@Entity
+@Table(name = "Technologies")
 public class TechnologyEntity {
 
     @Id
@@ -39,15 +39,15 @@ public class TechnologyEntity {
 
     @ManyToMany(cascade = ALL)
     @JoinTable(name = "technologies_educationalInfo",
-        joinColumns = @JoinColumn(name = "technologyId"),
-        inverseJoinColumns = @JoinColumn(name = "educationalInformationId")
+            joinColumns = @JoinColumn(name = "technologyId"),
+            inverseJoinColumns = @JoinColumn(name = "educationalInformationId")
     )
     private List<EducationalInformationEntity> educationalInformationList;
 
     @ManyToMany(cascade = ALL)
     @JoinTable(name = "technologies_professionalInfo",
-        joinColumns = @JoinColumn(name = "technologyId"),
-        inverseJoinColumns = @JoinColumn(name = "professionalInformationId")
+            joinColumns = @JoinColumn(name = "technologyId"),
+            inverseJoinColumns = @JoinColumn(name = "professionalInformationId")
     )
     private List<ProfessionalInformationEntity> professionalInformationList;
 

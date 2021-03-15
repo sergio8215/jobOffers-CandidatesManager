@@ -57,4 +57,45 @@ class JobOffersControllerImplTest {
                 .andExpect(content().string(uuid.toString()))
                 .andExpect(status().isCreated());
     }
+
+    @Test
+    void givenACandidateWithEmptyName_whenCreateCandidateIsTriggered_shouldReturn400() throws Exception {
+        final UUID uuid = UUID.randomUUID();
+        when(candidateService.createCandidate(candidateArgumentCaptor.capture())).thenReturn(uuid);
+        final ObjectMapper mapper = new ObjectMapper();
+        final Candidate candidate = createCandidate(List.of(), List.of());
+        candidate.setName("");
+        final String candidateRequest = mapper.writeValueAsString(candidate);
+
+        mockMvc.perform(post("/candidate")
+                .contentType(APPLICATION_JSON)
+                .content(candidateRequest))
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    void givenACandidateWithNullName_whenCreateCandidateIsTriggered_shouldReturn400() throws Exception {
+        final ObjectMapper mapper = new ObjectMapper();
+        final Candidate candidate = createCandidate(List.of(), List.of());
+        candidate.setName(null);
+        final String candidateRequest = mapper.writeValueAsString(candidate);
+
+        mockMvc.perform(post("/candidate")
+                .contentType(APPLICATION_JSON)
+                .content(candidateRequest))
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    void givenACandidateWithEmptyEmail_whenCreateCandidateIsTriggered_shouldReturn400() throws Exception {
+        final ObjectMapper mapper = new ObjectMapper();
+        final Candidate candidate = createCandidate(List.of(), List.of());
+        candidate.setEmail("");
+        final String candidateRequest = mapper.writeValueAsString(candidate);
+
+        mockMvc.perform(post("/candidate")
+                .contentType(APPLICATION_JSON)
+                .content(candidateRequest))
+                .andExpect(status().is4xxClientError());
+    }
 }

@@ -6,19 +6,24 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.List;
 
 @Getter
+@Setter
 @Builder
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Candidate {
 
+    @NotBlank(message = "Name can't be empty or null")
     private String name;
     @JsonSerialize(using = ToStringSerializer.class)
     private LocalDate birthday;
     private String gender;
+    @NotBlank(message = "Email can't be empty or null")
     private String email;
     private String address;
     private String linkedin;

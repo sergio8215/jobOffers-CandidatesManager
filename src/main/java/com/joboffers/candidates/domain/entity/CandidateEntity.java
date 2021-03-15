@@ -17,11 +17,11 @@ import java.util.UUID;
 
 import static javax.persistence.CascadeType.ALL;
 
-@Entity
-@Table(name = "candidates")
 @Getter
 @Setter
 @Builder
+@Entity
+@Table(name = "candidates")
 public class CandidateEntity {
     @Id
     @GeneratedValue(generator = "UUID")

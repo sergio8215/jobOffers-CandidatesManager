@@ -20,11 +20,11 @@ import java.util.UUID;
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.LAZY;
 
-@Entity
-@Table(name = "ProfessionalInformations")
 @Getter
 @Setter
 @Builder
+@Entity
+@Table(name = "ProfessionalInformations")
 public class ProfessionalInformationEntity {
 
     @Id
