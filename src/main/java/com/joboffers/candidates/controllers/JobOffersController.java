@@ -16,5 +16,5 @@ public interface JobOffersController {
 
     @PostMapping(value = "/candidate", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(CREATED)
-    String createCandidate(@Valid @RequestBody Candidate request);
+    long createCandidate(@Valid @RequestBody Candidate request);
 }

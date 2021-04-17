@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class ProfessionalInformation {
-    @NotBlank(message = "name can't be empty or null")
+    //@NotBlank(message = "name can't be empty or null")
     private String name;
     private String description;
     @JsonSerialize(using = ToStringSerializer.class)
@@ -26,14 +26,14 @@ public class ProfessionalInformation {
     private LocalDate endDate;
     private String notes;
     @NotBlank(message = "technology_list can't be empty or null")
-    private List<Technology> technologyList;
+    private List<Technology> technologyList = List.of();
 
-    public ProfessionalInformation(@NotBlank final String name,
+    public ProfessionalInformation(final String name,
                                    final String description,
-                                   @NotBlank final LocalDate startDate,
-                                   @NotBlank final LocalDate endDate,
+                                   final LocalDate startDate,
+                                   final LocalDate endDate,
                                    final String notes,
-                                   @NotBlank final List<Technology> technologyList) {
+                                   final List<Technology> technologyList) {
         this.name = name;
         this.description = description;
         this.startDate = startDate;

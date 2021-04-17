@@ -8,6 +8,7 @@ import com.joboffers.candidates.domain.repository.CandidateRepository;
 import com.joboffers.candidates.service.model.Candidate;
 import com.joboffers.candidates.service.model.EducationalInformation;
 import com.joboffers.candidates.service.model.Technology;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,7 +19,6 @@ import org.springframework.core.convert.ConversionService;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import static java.util.Collections.emptyList;
 import static java.util.List.of;
@@ -56,7 +56,7 @@ class CandidateServiceImplTest {
         when(candidateRepository.save(candidateEntity))
                 .thenReturn(candidateEntity);
 
-        final UUID candidateId = underTest.createCandidate(candidate);
+        final long candidateId = underTest.createCandidate(candidate);
 
         verify(conversionService).convert(candidate, CandidateEntity.class);
         verify(candidateRepository).save(candidateEntity);
@@ -79,7 +79,7 @@ class CandidateServiceImplTest {
 
         final CandidateEntity candidateEntity = TestObjectFactory.createEmptyCandidateEntity();
         final Candidate candidate = TestObjectFactory.createEmptyCandidate();
-        final UUID id = candidateEntity.getId();
+        final long id = candidateEntity.getId();
 
         when(candidateRepository.findById(id))
                 .thenReturn(Optional.of(candidateEntity));
@@ -95,7 +95,7 @@ class CandidateServiceImplTest {
     @Test
     void getCandidate_givenANonExistingCandidate_whenGetCandidateByIdIsTriggered_thenReturnEmptyOptional() {
 
-        final UUID id = UUID.randomUUID();
+        final long id = 1L;
         when(candidateRepository.findById(id))
                 .thenReturn(empty());
 
@@ -106,16 +106,7 @@ class CandidateServiceImplTest {
     }
 
     @Test
-    void getCandidate_givenANullId_whenGetCandidateByIdIsTriggered_thenThrowIllegalArgumentException() {
-
-        assertThatThrownBy(() -> underTest.getCandidate(null))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Candidate id can't be null");
-
-        verifyNoInteractions(candidateRepository, conversionService);
-    }
-
-    @Test
+    @Disabled("Draft")
     void getListOfCandidatesByTechnology_givenATechnologyName_whenGetListOfCandidatesByTechnologyIsTriggered_thenReturnAListOfCandidatesThatHasExperienceWithTheTechnology() {
 
         final TechnologyEntity technologyEntity = TechnologyEntity.builder()
@@ -123,7 +114,7 @@ class CandidateServiceImplTest {
                 .build();
 
         final EducationalInformationEntity educationalInformationEntity = EducationalInformationEntity.builder()
-                //.technologyList(of(technologyEntity))
+                .technologyList(of(technologyEntity))
                 .build();
 
         final CandidateEntity candidateEntity = TestObjectFactory.createCandidateEntity(
@@ -141,7 +132,7 @@ class CandidateServiceImplTest {
                 of(educationalInformation), emptyList());
 
         //when(candidateRepository.findByTechnology(TECHNOLOGY_NAME))
-        //      .thenReturn(of(candidateEntity));
+        //        .thenReturn(of(candidateEntity));
         when(conversionService.convert(candidateEntity, Candidate.class))
                 .thenReturn(candidate);
 
@@ -165,6 +156,7 @@ class CandidateServiceImplTest {
     }
 
     @Test
+    @Disabled("Draft")
     void getListOfCandidatesByTechnology_givenAnEmptyName_whenGetListOfCandidatesByTechnologyIsTriggered_thenReturnAnIllegalArgumentException() {
 
         assertThatThrownBy(() -> underTest.getListOfCandidatesByTechnologyOrderedByExperience(null, UNSORTED))

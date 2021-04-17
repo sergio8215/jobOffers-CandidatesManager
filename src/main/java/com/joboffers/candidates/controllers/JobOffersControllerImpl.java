@@ -14,7 +14,7 @@ public class JobOffersControllerImpl implements JobOffersController {
     }
 
     @Override
-    public String createCandidate(final Candidate request) {
-        return candidateService.createCandidate(request).toString();
+    public long createCandidate(final Candidate request) {
+        return candidateService.createCandidate(request);
     }
 }

@@ -3,14 +3,12 @@ package com.joboffers.candidates.service;
 import com.joboffers.candidates.domain.entity.CandidateEntity;
 import com.joboffers.candidates.domain.repository.CandidateRepository;
 import com.joboffers.candidates.service.model.Candidate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
 import javax.swing.*;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import static java.util.Objects.isNull;
 
@@ -18,7 +16,6 @@ import static java.util.Objects.isNull;
 class CandidateServiceImpl implements CandidateService {
 
     private final CandidateRepository candidateRepository;
-    @Autowired
     private final ConversionService conversionService;
 
     CandidateServiceImpl(final CandidateRepository candidateRepository, final ConversionService conversionService) {
@@ -27,7 +24,7 @@ class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public UUID createCandidate(final Candidate candidate) {
+    public long createCandidate(final Candidate candidate) {
 
         if (isNull(candidate)) {
             throw new IllegalArgumentException("Candidate can't be null");
@@ -39,11 +36,7 @@ class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public Optional<Candidate> getCandidate(final UUID id) {
-
-        if (isNull(id)) {
-            throw new IllegalArgumentException("Candidate id can't be null");
-        }
+    public Optional<Candidate> getCandidate(final long id) {
 
         return candidateRepository.findById(id).map(candidateEntity -> conversionService.convert(candidateEntity, Candidate.class));
     }

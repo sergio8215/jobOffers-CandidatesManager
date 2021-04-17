@@ -11,7 +11,6 @@ import com.joboffers.candidates.service.model.Technology;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 import static com.joboffers.candidates.service.model.Gender.WOMAN;
 
@@ -43,7 +42,7 @@ public final class TestObjectFactory {
 
     public static CandidateEntity createEmptyCandidateEntity() {
         return CandidateEntity.builder()
-                .id(UUID.randomUUID())
+                .id(1L)
                 .build();
     }
 

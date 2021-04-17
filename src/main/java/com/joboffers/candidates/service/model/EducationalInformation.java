@@ -28,15 +28,15 @@ public class EducationalInformation {
     @NotBlank(message = "place can't be empty or null")
     private String place;
     @NotBlank(message = "technology_list can't be empty or null")
-    private List<Technology> technologyList;
+    private List<Technology> technologyList = List.of();
 
-    public EducationalInformation(@NotBlank final String name,
+    public EducationalInformation(final String name,
                                   final String description,
-                                  @NotBlank final LocalDate startDate,
-                                  @NotBlank final LocalDate endDate,
+                                  final LocalDate startDate,
+                                  final LocalDate endDate,
                                   final String course,
-                                  @NotBlank final String place,
-                                  @NotBlank final List<Technology> technologyList) {
+                                  final String place,
+                                  final List<Technology> technologyList) {
         this.name = name;
         this.description = description;
         this.startDate = startDate;

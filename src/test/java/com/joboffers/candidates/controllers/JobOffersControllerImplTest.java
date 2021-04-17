@@ -15,7 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.List;
-import java.util.UUID;
 
 import static com.joboffers.candidates.TestObjectFactory.createCandidate;
 import static org.mockito.Mockito.when;
@@ -46,22 +45,19 @@ class JobOffersControllerImplTest {
 
     @Test
     void givenACandidate_whenCreateCandidateIsTriggered_shouldCreateCandidate() throws Exception {
-        final UUID uuid = UUID.randomUUID();
-        when(candidateService.createCandidate(candidateArgumentCaptor.capture())).thenReturn(uuid);
+        when(candidateService.createCandidate(candidateArgumentCaptor.capture())).thenReturn(1L);
         final ObjectMapper mapper = new ObjectMapper();
         final String candidateRequest = mapper.writeValueAsString(createCandidate(List.of(), List.of()));
 
         mockMvc.perform(post("/candidate")
                 .contentType(APPLICATION_JSON)
                 .content(candidateRequest))
-                .andExpect(content().string(uuid.toString()))
+                .andExpect(content().string("1"))
                 .andExpect(status().isCreated());
     }
 
     @Test
     void givenACandidateWithEmptyName_whenCreateCandidateIsTriggered_shouldReturn400() throws Exception {
-        final UUID uuid = UUID.randomUUID();
-        when(candidateService.createCandidate(candidateArgumentCaptor.capture())).thenReturn(uuid);
         final ObjectMapper mapper = new ObjectMapper();
         final Candidate candidate = createCandidate(List.of(), List.of());
         candidate.setName("");
