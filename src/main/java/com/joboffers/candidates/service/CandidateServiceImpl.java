@@ -1,6 +1,7 @@
 package com.joboffers.candidates.service;
 
 import com.joboffers.candidates.domain.entity.CandidateEntity;
+import com.joboffers.candidates.domain.entity.EducationalInformationEntity;
 import com.joboffers.candidates.domain.repository.CandidateRepository;
 import com.joboffers.candidates.service.model.Candidate;
 import org.springframework.core.convert.ConversionService;
@@ -32,6 +33,11 @@ class CandidateServiceImpl implements CandidateService {
 
         final CandidateEntity candidateEntity = conversionService.convert(candidate, CandidateEntity.class);
         assert candidateEntity != null : "The candidate couldn't be converted";
+        final List<EducationalInformationEntity> educationalInformationEntity = candidateEntity.getEducationalInformationList();
+        candidateEntity.setEducationalInformationList(List.of());
+        final Long id = candidateRepository.save(candidateEntity).getId();
+        candidateEntity.setEducationalInformationList(educationalInformationEntity);
+        candidateEntity.setId(id);
         return candidateRepository.save(candidateEntity).getId();
     }
 

@@ -129,14 +129,15 @@ create TABLE public.technologies (
 create TABLE public.career_informations (
 	id SERIAL PRIMARY KEY,
 	candidate_id int8 NOT NULL,
-	school varchar(255) NULL,
-	company varchar(255) NULL,
+	school varchar(150) NULL,
+	company varchar(150) NULL,
 	description text NOT NULL,
 	course varchar(255) NULL,
 	notes text NULL,
-	place varchar(255) NULL,
+	place varchar(100) NULL,
 	start_date date NULL,
 	end_date date NULL,
+	career_type varchar(20) NOT NULL,
 	CONSTRAINT career_informations_fkey1 FOREIGN KEY (candidate_id) REFERENCES candidates(id)
 );
 

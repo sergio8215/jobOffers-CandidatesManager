@@ -4,6 +4,8 @@ import com.joboffers.candidates.domain.entity.CandidateEntity;
 import com.joboffers.candidates.service.model.Candidate;
 import com.joboffers.candidates.service.model.EducationalInformation;
 import com.joboffers.candidates.service.model.ProfessionalInformation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -15,6 +17,12 @@ public class CandidateEntityToCandidateConverter implements Converter<CandidateE
 
     private ConversionService conversionService;
 
+    @Autowired
+    @Lazy
+    void setConversionService(final ConversionService conversionService) {
+        this.conversionService = conversionService;
+    }
+    
     @Override
     public Candidate convert(final CandidateEntity candidateEntity) {
         return Candidate.builder()

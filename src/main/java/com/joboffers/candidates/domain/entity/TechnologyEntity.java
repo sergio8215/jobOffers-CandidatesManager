@@ -45,28 +45,5 @@ public class TechnologyEntity {
             inverseJoinColumns = @JoinColumn(name = "professionalInformationId")
     )
     private List<ProfessionalInformationEntity> professionalInformationList;
-
-    public String getTechnology() {
-        return technology;
-    }
-
-    public void setTechnology(final String technology) {
-        this.technology = technology;
-    }
-
-    public List<EducationalInformationEntity> getEducationalInformationList() {
-        return educationalInformationList;
-    }
-
-    public void setEducationalInformationList(final List<EducationalInformationEntity> educationalInformationList) {
-        this.educationalInformationList = educationalInformationList;
-    }
-
-    public List<ProfessionalInformationEntity> getProfessionalInformationList() {
-        return professionalInformationList;
-    }
-
-    public void setProfessionalInformationList(final List<ProfessionalInformationEntity> professionalInformationList) {
-        this.professionalInformationList = professionalInformationList;
-    }
+    
 }
