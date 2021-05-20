@@ -25,7 +25,7 @@ public class CandidateToCandidateEntityConverter implements Converter<Candidate,
 
     @Override
     public CandidateEntity convert(final Candidate candidate) {
-        return CandidateEntity.builder()
+        final CandidateEntity candidateEntity = CandidateEntity.builder()
                 .name(candidate.getName())
                 .address(candidate.getAddress())
                 .birthday(candidate.getBirthday())
@@ -42,5 +42,10 @@ public class CandidateToCandidateEntityConverter implements Converter<Candidate,
                                 conversionService.convert(professionalInformation, ProfessionalInformationEntity.class))
                         .collect(Collectors.toList()))
                 .build();
+
+        candidateEntity.getEducationalInformationList().forEach(educationalInformationEntity -> educationalInformationEntity.setCandidate(candidateEntity));
+        candidateEntity.getProfessionalInformationList().forEach(professionalInformationEntity -> professionalInformationEntity.setCandidate(candidateEntity));
+
+        return candidateEntity;
     }
 }

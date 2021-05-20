@@ -43,7 +43,7 @@ public abstract class CareerInformationEntity {
 
     @ManyToOne(optional = false, fetch = LAZY)
     @JoinColumn(name = "candidate_id", nullable = false, updatable = false)
-    private final CandidateEntity candidate;
+    private CandidateEntity candidate;
 
     protected CareerInformationEntity(final String name,
                                       final String description,
@@ -56,6 +56,10 @@ public abstract class CareerInformationEntity {
         this.startDate = startDate;
         this.endDate = endDate;
         this.careerType = careerType;
+        this.candidate = candidate;
+    }
+
+    public void setCandidate(final CandidateEntity candidate) {
         this.candidate = candidate;
     }
 }
