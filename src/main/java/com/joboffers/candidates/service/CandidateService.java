@@ -1,5 +1,6 @@
 package com.joboffers.candidates.service;
 
+import com.joboffers.candidates.domain.entity.CandidateEntity;
 import com.joboffers.candidates.service.model.Candidate;
 
 import javax.swing.*;
@@ -8,7 +9,7 @@ import java.util.Optional;
 
 public interface CandidateService {
 
-    long createCandidate(Candidate candidate);
+    CandidateEntity createCandidate(Candidate candidate);
 
     Optional<Candidate> getCandidate(long id);
 

@@ -28,7 +28,7 @@ public class EducationalInformationEntity extends CareerInformationEntity {
     private final String notes;
 
     @ManyToMany(cascade = ALL, mappedBy = "educationalInformationList")
-    private List<TechnologyEntity> technologyList = List.of();
+    private final List<TechnologyEntity> technologyList;
 
     @Builder
     public EducationalInformationEntity(final String name,

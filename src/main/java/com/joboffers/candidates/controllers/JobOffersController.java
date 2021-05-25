@@ -1,5 +1,6 @@
 package com.joboffers.candidates.controllers;
 
+import com.joboffers.candidates.domain.entity.CandidateEntity;
 import com.joboffers.candidates.service.model.Candidate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,5 +17,5 @@ public interface JobOffersController {
 
     @PostMapping(value = "/candidate", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(CREATED)
-    long createCandidate(@Valid @RequestBody Candidate request);
+    CandidateEntity createCandidate(@Valid @RequestBody Candidate request);
 }

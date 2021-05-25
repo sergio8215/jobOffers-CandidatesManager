@@ -49,8 +49,8 @@ public class CandidateEntity {
     private String phoneNumber;
 
     @OneToMany(cascade = ALL, mappedBy = "candidate")
-    private List<EducationalInformationEntity> educationalInformationList = List.of();
+    private List<EducationalInformationEntity> educationalInformationList;
 
     @OneToMany(cascade = ALL, mappedBy = "candidate")
-    private List<ProfessionalInformationEntity> professionalInformationList = List.of();
+    private List<ProfessionalInformationEntity> professionalInformationList;
 }

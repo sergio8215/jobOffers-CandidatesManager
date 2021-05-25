@@ -24,7 +24,7 @@ class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public long createCandidate(final Candidate candidate) {
+    public CandidateEntity createCandidate(final Candidate candidate) {
 
         if (isNull(candidate)) {
             throw new IllegalArgumentException("Candidate can't be null");
@@ -32,7 +32,7 @@ class CandidateServiceImpl implements CandidateService {
 
         final CandidateEntity candidateEntity = conversionService.convert(candidate, CandidateEntity.class);
         assert candidateEntity != null : "The candidate couldn't be converted";
-        return candidateRepository.save(candidateEntity).getId();
+        return candidateRepository.save(candidateEntity);
     }
 
     @Override

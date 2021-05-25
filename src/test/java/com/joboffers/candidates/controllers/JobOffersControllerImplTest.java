@@ -1,6 +1,7 @@
 package com.joboffers.candidates.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.joboffers.candidates.domain.entity.CandidateEntity;
 import com.joboffers.candidates.service.CandidateService;
 import com.joboffers.candidates.service.model.Candidate;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,10 +18,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.List;
 
 import static com.joboffers.candidates.TestObjectFactory.createCandidate;
+import static com.joboffers.candidates.TestObjectFactory.createCandidateEntity;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
@@ -45,14 +46,15 @@ class JobOffersControllerImplTest {
 
     @Test
     void givenACandidate_whenCreateCandidateIsTriggered_shouldCreateCandidate() throws Exception {
-        when(candidateService.createCandidate(candidateArgumentCaptor.capture())).thenReturn(1L);
+        final CandidateEntity candidateEntity = createCandidateEntity(List.of(), List.of());
+        when(candidateService.createCandidate(candidateArgumentCaptor.capture())).thenReturn(candidateEntity);
         final ObjectMapper mapper = new ObjectMapper();
         final String candidateRequest = mapper.writeValueAsString(createCandidate(List.of(), List.of()));
 
         mockMvc.perform(post("/candidate")
                 .contentType(APPLICATION_JSON)
                 .content(candidateRequest))
-                .andExpect(content().string("1"))
+                //.andExpect(jsonPath("$.[1].name", is("Sergio")))
                 .andExpect(status().isCreated());
     }
 
