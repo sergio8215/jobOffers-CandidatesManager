@@ -48,9 +48,9 @@ public class CandidateEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @OneToMany(cascade = ALL, mappedBy = "candidate")
+    @OneToMany(cascade = ALL, mappedBy = "candidate", orphanRemoval = true)
     private List<EducationalInformationEntity> educationalInformationList;
 
-    @OneToMany(cascade = ALL, mappedBy = "candidate")
+    @OneToMany(cascade = ALL, mappedBy = "candidate", orphanRemoval = true)
     private List<ProfessionalInformationEntity> professionalInformationList;
 }

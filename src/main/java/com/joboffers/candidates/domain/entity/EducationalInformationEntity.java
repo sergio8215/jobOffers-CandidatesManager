@@ -38,9 +38,8 @@ public class EducationalInformationEntity extends CareerInformationEntity {
                                         final String course,
                                         final String place,
                                         final String notes,
-                                        final List<TechnologyEntity> technologyList,
-                                        final CandidateEntity candidate) {
-        super(name, description, startDate, endDate, candidate, CareerType.EDUCATIONAL.name());
+                                        final List<TechnologyEntity> technologyList) {
+        super(name, description, startDate, endDate, CareerType.EDUCATIONAL.name());
         this.course = course;
         this.place = place;
         this.notes = notes;

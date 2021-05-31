@@ -31,9 +31,8 @@ public class ProfessionalInformationEntity extends CareerInformationEntity {
                                          final LocalDate startDate,
                                          final LocalDate endDate,
                                          final String notes,
-                                         final List<TechnologyEntity> technologyList,
-                                         final CandidateEntity candidate) {
-        super(name, description, startDate, endDate, candidate, CareerType.PROFESSIONAL.name());
+                                         final List<TechnologyEntity> technologyList) {
+        super(name, description, startDate, endDate, CareerType.PROFESSIONAL.name());
         this.notes = notes;
         this.technologyList = technologyList;
     }

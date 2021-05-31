@@ -1,5 +1,6 @@
 package com.joboffers.candidates.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -41,6 +42,7 @@ public abstract class CareerInformationEntity {
     @Column(name = "career_type", nullable = false)
     private final String careerType;
 
+    @JsonIgnore
     @ManyToOne(optional = false, fetch = LAZY)
     @JoinColumn(name = "candidate_id", nullable = false, updatable = false)
     private CandidateEntity candidate;
@@ -49,14 +51,12 @@ public abstract class CareerInformationEntity {
                                       final String description,
                                       final LocalDate startDate,
                                       final LocalDate endDate,
-                                      final CandidateEntity candidate,
                                       final String careerType) {
         this.name = name;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
         this.careerType = careerType;
-        this.candidate = candidate;
     }
 
     public void setCandidate(final CandidateEntity candidate) {
