@@ -22,6 +22,7 @@ import static com.joboffers.candidates.TestObjectFactory.createCandidateEntity;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
@@ -54,7 +55,7 @@ class JobOffersControllerImplTest {
         mockMvc.perform(post("/candidate")
                 .contentType(APPLICATION_JSON)
                 .content(candidateRequest))
-                //.andExpect(jsonPath("$.[1].name", is("Sergio")))
+                .andExpect(jsonPath("$.name").value("Patricia"))
                 .andExpect(status().isCreated());
     }
 

@@ -7,15 +7,23 @@ import javax.validation.constraints.NotBlank;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Technology {
-    @NotBlank(message = "name can't be empty or null")
-    private final String name;
 
-    public Technology(final String name) {
-        this.name = name;
+    @NotBlank(message = "name can't be empty or null")
+    private String technology;
+
+    public Technology() {
     }
 
-    public String getName() {
-        return name;
+    public Technology(@NotBlank(message = "name can't be empty or null") final String technology) {
+        this.technology = technology;
+    }
+
+    public void setTechnology(final String technology) {
+        this.technology = technology;
+    }
+
+    public String getTechnology() {
+        return technology;
     }
 
 }

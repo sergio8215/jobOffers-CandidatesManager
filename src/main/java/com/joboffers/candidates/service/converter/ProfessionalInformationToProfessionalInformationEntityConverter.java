@@ -24,7 +24,7 @@ public class ProfessionalInformationToProfessionalInformationEntityConverter imp
     
     @Override
     public ProfessionalInformationEntity convert(final ProfessionalInformation professionalInformation) {
-        return ProfessionalInformationEntity.builder()
+        final ProfessionalInformationEntity professionalInformationEntity = ProfessionalInformationEntity.builder()
                 .name(professionalInformation.getName())
                 .notes(professionalInformation.getNotes())
                 .description(professionalInformation.getDescription())
@@ -35,5 +35,9 @@ public class ProfessionalInformationToProfessionalInformationEntityConverter imp
                                 conversionService.convert(technology, TechnologyEntity.class))
                         .collect(Collectors.toList()))
                 .build();
+
+        //professionalInformationEntity.getTechnologyList().forEach(technologyEntity -> technologyEntity.setProfessionalInformationList(List.of(professionalInformationEntity)));
+
+        return professionalInformationEntity;
     }
 }

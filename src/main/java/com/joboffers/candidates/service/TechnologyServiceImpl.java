@@ -41,13 +41,13 @@ class TechnologyServiceImpl implements TechnologyService {
             final List<Technology> educationalTechnologyList = educationalInformation.getTechnologyList();
 
             educationalTechnologyList.forEach(tech -> {
-                final Integer pastMonthExperience = technologyMap.getOrDefault(tech.getName().toLowerCase(), 0);
+                final Integer pastMonthExperience = technologyMap.getOrDefault(tech.getTechnology().toLowerCase(), 0);
                 final Integer newMonthExperience = Math.toIntExact(ChronoUnit.MONTHS.between(
                         educationalInformation.getStartDate(),
                         educationalInformation.getEndDate()
                 ));
 
-                technologyMap.put(tech.getName().toLowerCase(), pastMonthExperience + newMonthExperience);
+                technologyMap.put(tech.getTechnology().toLowerCase(), pastMonthExperience + newMonthExperience);
             });
         });
 
@@ -55,13 +55,13 @@ class TechnologyServiceImpl implements TechnologyService {
             final List<Technology> professionalTechnologyList =  professionalInformation.getTechnologyList();
 
             professionalTechnologyList.forEach(tech -> {
-                final Integer pastMonthExperience = technologyMap.getOrDefault(tech.getName().toLowerCase(), 0);
+                final Integer pastMonthExperience = technologyMap.getOrDefault(tech.getTechnology().toLowerCase(), 0);
                 final Integer newMonthExperience = Math.toIntExact(ChronoUnit.MONTHS.between(
                         professionalInformation.getStartDate(),
                         professionalInformation.getEndDate()
                 ));
 
-                technologyMap.put(tech.getName().toLowerCase(), pastMonthExperience + newMonthExperience);
+                technologyMap.put(tech.getTechnology().toLowerCase(), pastMonthExperience + newMonthExperience);
             });
         });
 

@@ -24,7 +24,7 @@ public class EducationalInformationToEducationalInformationEntityConverter imple
     
     @Override
     public EducationalInformationEntity convert(final EducationalInformation educationalInformation) {
-        return EducationalInformationEntity.builder()
+        final EducationalInformationEntity educationalInformationEntity = EducationalInformationEntity.builder()
                 .name(educationalInformation.getName())
                 .place(educationalInformation.getPlace())
                 .course(educationalInformation.getCourse())
@@ -35,5 +35,9 @@ public class EducationalInformationToEducationalInformationEntityConverter imple
                         conversionService.convert(technology, TechnologyEntity.class))
                         .collect(Collectors.toList()))
                 .build();
+
+        //educationalInformationEntity.getTechnologyList().forEach(technologyEntity -> technologyEntity.setEducationalInformationList(List.of(educationalInformationEntity)));
+
+        return educationalInformationEntity;
     }
 }

@@ -119,7 +119,7 @@ create TABLE public.candidates (
 
 create TABLE public.technologies (
 	id SERIAL PRIMARY KEY,
-	name varchar(255) NOT NULL UNIQUE
+	name varchar(255) NOT NULL
 );
 
 -- public.career_informations definition
